@@ -10,7 +10,9 @@ Vue 3 + TypeScript + Element Plus 前端，ASP.NET Core / .NET 10 后端，MailK
 
 **下载地址：[课程项目 v1.0.0 发布页](https://github.com/CrystalYang1208/MailHub/releases/tag/v1.0.0-course)**
 
-在发布页的 Assets 中下载 `MailHub-Win11-x64.zip`（Win11 免安装运行包），或下载 `MailHub-Complete.zip`（含运行包、原始源码与期末报告）。报告也单独提供。
+在发布页的 Assets 中下载 `MailHub-Win11-x64.zip`（Win11 免安装运行包）、`MailHub-Source.zip`（原始交付源码）或 `MailHub-Course-Report.docx`（可编辑期末报告）。
+
+备用下载：[运行包](https://github.com/CrystalYang1208/MailHub/raw/refs/heads/main/distribution/MailHub-Win11-x64.zip) · [期末报告](https://github.com/CrystalYang1208/MailHub/raw/refs/heads/main/distribution/MailHub-Course-Report.docx)。`distribution` 中的附件与原始交付包校验一致；GitHub Actions 验证 SHA256 后发布 Release。
 
 解压 `MailHub-Win11-x64.zip`，保留 `wwwroot` 目录与程序在一起：
 

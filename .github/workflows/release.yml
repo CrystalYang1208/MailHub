@@ -1,0 +1,31 @@
+name: Publish course release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'distribution/**'
+      - '.github/workflows/release.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify packaged deliverables
+        working-directory: distribution
+        run: sha256sum --check SHA256SUMS.txt
+      - name: Publish downloadable course files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! gh release view v1.0.0-course >/dev/null 2>&1; then
+            gh release create v1.0.0-course --target "$GITHUB_SHA" --draft --title 'MailHub 课程项目 v1.0.0' --notes-file distribution/RELEASE-NOTES.md
+          fi
+          gh release upload v1.0.0-course distribution/MailHub-Win11-x64.zip distribution/MailHub-Source.zip distribution/MailHub-Course-Report.docx distribution/READ-ME-FIRST.md distribution/SHA256SUMS.txt --clobber
+          gh release edit v1.0.0-course --draft=false --latest
