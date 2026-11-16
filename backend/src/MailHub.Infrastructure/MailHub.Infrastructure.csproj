@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../MailHub.Application/MailHub.Application.csproj" />
+    <PackageReference Include="MailKit" />
+    <PackageReference Include="MimeKit" />
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" />
+    <EmbeddedResource Include="../../../database/migrations/catalog/V0001__initial.sql" LogicalName="MailHub.Migrations.catalog.V0001.sql" />
+    <EmbeddedResource Include="../../../database/migrations/catalog/V0002__validation_failures.sql" LogicalName="MailHub.Migrations.catalog.V0002.sql" />
+    <EmbeddedResource Include="../../../database/migrations/profile/V0001__initial.sql" LogicalName="MailHub.Migrations.profile.V0001.sql" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../MailHub.Application/MailHub.Application.csproj" />
+    <ProjectReference Include="../MailHub.Infrastructure/MailHub.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="../../../frontend/dist/**" Link="wwwroot/%(RecursiveDir)%(Filename)%(Extension)" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

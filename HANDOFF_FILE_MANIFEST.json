@@ -1,0 +1,625 @@
+{
+  "scope": "Allowlisted developer sources only; historical private evidence and original Word remain with lead",
+  "files": [
+    {
+      "path": ".agents/skills/.openspec-target",
+      "sha256": "243b0dc9b847e66c440dca985e10fe0ce9e29c379b018ddd5747ba8948f84cc8"
+    },
+    {
+      "path": ".agents/skills/openspec-apply-change/SKILL.md",
+      "sha256": "71f084a1ea26194f62cb9ed31da8e4aa837fd57abb2b91b9cbb0c6ee8d503b79"
+    },
+    {
+      "path": ".agents/skills/openspec-archive-change/SKILL.md",
+      "sha256": "3b52b3a9ff61247af45f7fdaacb7166a224e1c04081ddbc309f353ec01f741b2"
+    },
+    {
+      "path": ".agents/skills/openspec-explore/SKILL.md",
+      "sha256": "e776f0d8b5e36d2e5fd8149254a95c54008942bd4336d1c67e568c67e45ddcca"
+    },
+    {
+      "path": ".agents/skills/openspec-propose/SKILL.md",
+      "sha256": "5fa202ae4b4f27a67aac3e7e27e5b70fbb733651445988a6f4442bea21ec830e"
+    },
+    {
+      "path": ".agents/skills/openspec-sync-specs/SKILL.md",
+      "sha256": "10616a4935e75bbbe5a4bdc81f19805e648076ba106414ffd361a5ae88f01867"
+    },
+    {
+      "path": ".agents/skills/openspec-update-change/SKILL.md",
+      "sha256": "51066d453fa4300b0fab4345ed0c4734b57046fa8b170db78556cf52a0ea3916"
+    },
+    {
+      "path": ".editorconfig",
+      "sha256": "e8b9cb440a8f053922690af7e40a2241287d0cc89c33cf28c3616c838836993a"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "sha256": "88511b654a613ee74aaddfdab7bb38c903f4868e74e4c18bfe0715a375f76f23"
+    },
+    {
+      "path": ".github/workflows/engineering.yml",
+      "sha256": "d2c5e018ae00e8b89835f13e48fb1c94f140da3f69cb48f330478e8b39c0e245"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "7777cf7346fb494cf81245fac26b921ddc5313163589fc7fec6f9420ea995aeb"
+    },
+    {
+      "path": ".npmrc",
+      "sha256": "536759977ef819ea7fe3d88ac0625573e4681c82213685edda9624c65a9e0eaa"
+    },
+    {
+      "path": "backend/Directory.Build.props",
+      "sha256": "bce755c5d8b1a928b5d717e868d67859f7bb749ecbb521edec842a87601e730a"
+    },
+    {
+      "path": "backend/Directory.Packages.props",
+      "sha256": "386bf6b951b6da2d6f86d9c444e2b4a6eb40d83eb8b554585c91b1ce5bfdb865"
+    },
+    {
+      "path": "backend/MailHub.slnx",
+      "sha256": "b3e5dbd677083952fdc6b634911d0098d0feba5a87dbc0bf4f7d2571f1210c5f"
+    },
+    {
+      "path": "backend/NuGet.Config",
+      "sha256": "c84f912e5c256d8a5c713f5b3d5123df5fd0b19fdc66692d2fb288ea7edca0a9"
+    },
+    {
+      "path": "backend/NuGet.Mirror.Config",
+      "sha256": "9fad0470f602c1487320af6c872fb364316fa86e5613eb8f9aa833f5ea1e93f4"
+    },
+    {
+      "path": "backend/README.md",
+      "sha256": "9a6122d22aad239cf505830859b754c52ae55a03a56f058a6100668173c731e3"
+    },
+    {
+      "path": "backend/src/MailHub.Application/Engineering/EngineeringContracts.cs",
+      "sha256": "63583c69442de8209f880bd2820f17eedad040477d84cc24a0a06d95d8ce9bbe"
+    },
+    {
+      "path": "backend/src/MailHub.Application/MailHub.Application.csproj",
+      "sha256": "282232d6e6228ebe2a159a568a644f7c1b4d6d82e23b1c7e6963bbdaea86e3f5"
+    },
+    {
+      "path": "backend/src/MailHub.Application/packages.lock.json",
+      "sha256": "909ac4b9c789afb1ab6dae5c93d326303dfa501c00c4fb2be9397498efe0fce0"
+    },
+    {
+      "path": "backend/src/MailHub.Domain/AssemblyMarker.cs",
+      "sha256": "4d4b72f03507d71732d0ebd79ea6f61dcccd0018fede9cc016c2eddff71c835d"
+    },
+    {
+      "path": "backend/src/MailHub.Domain/MailHub.Domain.csproj",
+      "sha256": "8d654c44b7bebb6b31a9f2f606927f45b5072193adc4eef8cce3f3cf3b278df3"
+    },
+    {
+      "path": "backend/src/MailHub.Domain/packages.lock.json",
+      "sha256": "2241481b7e74dcdcd600303146b730ecc12cbd8e49aa55755ef95ee499fe229a"
+    },
+    {
+      "path": "backend/src/MailHub.Host/HostFactory.cs",
+      "sha256": "4b006218fb6452e2d2243949e07f996f25ae07b7cff25cf9edebcfd502e39c4d"
+    },
+    {
+      "path": "backend/src/MailHub.Host/implemented-operations.json",
+      "sha256": "a269fa041c88006d1bad648ff372a8b001136611003933e29d7621d141b29e31"
+    },
+    {
+      "path": "backend/src/MailHub.Host/MailHub.Host.csproj",
+      "sha256": "1dd8382b603e9b240640751df9ad5e174326893bd48851eb058ca70b6e8c0640"
+    },
+    {
+      "path": "backend/src/MailHub.Host/packages.lock.json",
+      "sha256": "f5d0e3d68283c46142ee7b357c9a571249ea662620051ada03429d032249fe5a"
+    },
+    {
+      "path": "backend/src/MailHub.Host/Program.cs",
+      "sha256": "371dd277e1144042ff089a8e9889bb61f01ccbf57ca4488652ade3548d6292c9"
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/MailHub.Infrastructure.csproj",
+      "sha256": "7d3dd3415581e430348f6499bc7154306bb739271899b41461ebba9deb81a9be"
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/packages.lock.json",
+      "sha256": "3dc6e41528f3b4b5a6b4866b9f43548b1dd9ccc88fa99bc7621939d5fbaff84e"
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Persistence/EngineeringStore.cs",
+      "sha256": "966732d63fd69a6c109b89973fd46bbb920df041ef7847437e47b428b3f4e07f"
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Persistence/MigrationRunner.cs",
+      "sha256": "2fa7cd680b694c5cfda79f2e97d36dcc8088295b37ff84fb80086c02d2f769aa"
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Protocols/ProtocolAssembly.cs",
+      "sha256": "71453057f9791cf084d2015e36d6706b0559d1cae5514d1b2096a9cca4df1b9d"
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Security/README.md",
+      "sha256": "3bac3524a4d54319d3aca5ada45d0a8afc3174e00e852d25c9aa40d2d29b1b92"
+    },
+    {
+      "path": "backend/tests/MailHub.Tests/FoundationTests.cs",
+      "sha256": "8e72bd53a67cba8ac297ff42532a9ef53dc193f1984212ab3d756f8ce5fe4c26"
+    },
+    {
+      "path": "backend/tests/MailHub.Tests/MailHub.Tests.csproj",
+      "sha256": "ce22cd2692fdd4a0892d0268c5f642e2b44e4fd7744c275be30e73db05a7e9db"
+    },
+    {
+      "path": "backend/tests/MailHub.Tests/packages.lock.json",
+      "sha256": "3e960bf718c2cbdc8ba34d0e1c215e7183cb5996da130e8f09550a7046c7e568"
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "sha256": "9a5e9532b0827c73c832b61b1af9f66e83bf75d75e4c43fd7b1cdbf367db9594"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "f2098ecdceb87ee8329d9797bb3607ba95697bd33626ac1ab0b38df804a527d5"
+    },
+    {
+      "path": "database/migrations/catalog/V0001__initial.sql",
+      "sha256": "426b03787af0a48a7f518f4c286645b04eec3e74c461ebf9c6c558cbdf74351e"
+    },
+    {
+      "path": "database/migrations/profile/V0001__initial.sql",
+      "sha256": "2bda41a5ff6ae050f016790d8bb714ff8c89ac37659bbb889fe8cb50c4404d22"
+    },
+    {
+      "path": "database/README.md",
+      "sha256": "1ee5016b0caca257cc8d2815580b1f5e92adb73c5544a5e2c45cd23796bfed78"
+    },
+    {
+      "path": "database/scripts/inspect.sql",
+      "sha256": "183c4116e74611e07938206410c77b3dee0ed9c7d516796cdc0575c6f47062fb"
+    },
+    {
+      "path": "DEVELOPMENT_HANDOFF.md",
+      "sha256": "837fbf632f49b5f762ef21054b4ba63667b007ed05d523c7a465bf4658acdd94"
+    },
+    {
+      "path": "docs/collaboration/CODE_REVIEW.md",
+      "sha256": "35885521ed541251818be7b8a32b18af27fe1af124772311f43a9f8c63d3ccc6"
+    },
+    {
+      "path": "docs/collaboration/DEVELOPMENT_SETUP.md",
+      "sha256": "c9ec791eb0b3241450192c1aa4ab71dbd8e60509911f8289f9a417ac489b73e2"
+    },
+    {
+      "path": "docs/collaboration/DEVELOPMENT_SLICES.md",
+      "sha256": "7e9cb1d48b3ce29f8c3cc24f992ca38d6c72e89b1cb6357f56311ef00596e797"
+    },
+    {
+      "path": "docs/collaboration/GIT_WORKFLOW.md",
+      "sha256": "25e47e2bc8d13b5ef4ce16489180c22ac072ceb8e62be03f3fcc9e2a9c75202f"
+    },
+    {
+      "path": "docs/collaboration/OPENSPEC_WORKFLOW.md",
+      "sha256": "d39a6e63de68c747162c3654a7bc924b5d970fe1241d54b12c00c9f641af360d"
+    },
+    {
+      "path": "docs/collaboration/REQUIREMENT_SPEC_TRACE.md",
+      "sha256": "2df05913a1dccc46d223594d940e08ab04c32f701328a7e7ecdfd10c45d9abf2"
+    },
+    {
+      "path": "docs/collaboration/STAGE4_PREFLIGHT.md",
+      "sha256": "61db0a76d8e2af59cfbba03a2d8c6302437a85ece7cf30d3fc5b852d1cff534f"
+    },
+    {
+      "path": "docs/requirements/BASELINE_DECISIONS.md",
+      "sha256": "1e6ccdedeb256573ff5c2d840948cb039dd41fd606283de8a8f61d26588599b8"
+    },
+    {
+      "path": "docs/technical/design/ADR/0004-local-host.md",
+      "sha256": "9a6b38864e79d068141e774ca444a7589f83ad335533f65d099497858d259807"
+    },
+    {
+      "path": "docs/technical/design/ADR/0005-profile-storage.md",
+      "sha256": "5be66286789e1fd8b0e81b173416367678e3ac9406f12ab265392a01a0a45821"
+    },
+    {
+      "path": "docs/technical/design/ADR/0006-password-envelope.md",
+      "sha256": "13ca9502510ae42074bc58d5466bfae0a4c5296ecb345bf5c72fed626b1ba877"
+    },
+    {
+      "path": "docs/technical/design/ADR/0007-body-file-storage.md",
+      "sha256": "ea2ebb0eec562e42e7c660882a925e42f1a00af64ce441324fac26046c1f2cf9"
+    },
+    {
+      "path": "docs/technical/design/ADR/0008-fts-chinese.md",
+      "sha256": "9e0b8709e608af7c3053f087927f2e1394c25ae46134ad0d71015bd9e2af665d"
+    },
+    {
+      "path": "docs/technical/design/ADR/0009-sync-transactions.md",
+      "sha256": "8eb9618b7c93f6af234b415c4e018c68107ac873874c01a0727b7219ad2d09e2"
+    },
+    {
+      "path": "docs/technical/design/ADR/0010-local-security.md",
+      "sha256": "532ea87181b5e2989ef1cffd5b4ce0490886de6f153d0ae266a9462e5f4470c4"
+    },
+    {
+      "path": "docs/technical/design/ADR/0011-provider-adapters.md",
+      "sha256": "4c96e7e2d08f8f6e89dfea7c81c5da759c60939fcd3f46ed9def5345466eabc3"
+    },
+    {
+      "path": "docs/technical/design/API_DESIGN.md",
+      "sha256": "95f56c09dcf0050bf55ba11b76f34d2f6bb3e8162c309fb3e178b71ecada093a"
+    },
+    {
+      "path": "docs/technical/design/artifact-manifest.json",
+      "sha256": "7b137bbf8ca011014b693c576694805cb0e0bfac931235937531d02b4b652acc"
+    },
+    {
+      "path": "docs/technical/design/baseline-input.json",
+      "sha256": "cb456e140361277be9698c678a10a0629c5392fa16e7c6708d4fd68d2181278d"
+    },
+    {
+      "path": "docs/technical/design/DATA_DICTIONARY.md",
+      "sha256": "3c9b3593288c5fe2db7653e06c702a94cb62384e591a4ec343180da9f7447b6a"
+    },
+    {
+      "path": "docs/technical/design/DATABASE_DESIGN.md",
+      "sha256": "ca849b875f8bc7e5579dd10f065f76dca79e29f372eff5e674ac1d9da3794b7c"
+    },
+    {
+      "path": "docs/technical/design/design-checks.initial.json",
+      "sha256": "7aac3c92169a187a6b7f31da2a7a22e1b629d5e60043a33373c438a3329cf27e"
+    },
+    {
+      "path": "docs/technical/design/design-checks.json",
+      "sha256": "f985aeae048048d4fc4194fbf9ca66eabc7b9ac66805f4ec416b26bc1ad3695f"
+    },
+    {
+      "path": "docs/technical/design/DESIGN_INPUTS.md",
+      "sha256": "f212a18be2cf25ca668183e6e2e0b61c1edca8c60e3e60e15d3e7365ff2c8d4f"
+    },
+    {
+      "path": "docs/technical/design/diagrams/database_design-1.mmd",
+      "sha256": "a6866d615b22d6943b6a54b50d3fbd9fe9351b51fdcccc9d6923e91a5be05582"
+    },
+    {
+      "path": "docs/technical/design/diagrams/email_integration_design-1.mmd",
+      "sha256": "0bd2481185d7d424ee9a8e01e3770c858844ffdcabe67ed5ac38b5e0931c1743"
+    },
+    {
+      "path": "docs/technical/design/diagrams/er.mmd",
+      "sha256": "6f2fe46dd7826d1d24dd3f063c5ee115bb8bd743309108055978cc80cb95193c"
+    },
+    {
+      "path": "docs/technical/design/diagrams/search_storage_design-1.mmd",
+      "sha256": "259c206170f251ce012e0a33fe5712c3c9932d7627c7e4dd8e257f8806ceeb2c"
+    },
+    {
+      "path": "docs/technical/design/diagrams/security_design-1.mmd",
+      "sha256": "54f1cdf8417e4fbd0df076f382d028d7ee3b6e0032afadc68dfbdd448c652597"
+    },
+    {
+      "path": "docs/technical/design/diagrams/sync_engine_design-1.mmd",
+      "sha256": "9bd254b3c1f1223fac6d39eed8c5e00f611da2658bfb9f7e3326946621a0ca20"
+    },
+    {
+      "path": "docs/technical/design/diagrams/sync_engine_design-2.mmd",
+      "sha256": "c8eab96fe908126ddf20e7cc0c1990897101e3b97820068852dddfd64777e65d"
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-1.mmd",
+      "sha256": "71807734ae3c5e3fd37b003713f12e70daf266511a1bb398acc030b2ec05b82b"
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-2.mmd",
+      "sha256": "bc3923eabd4d91bf77e8dd599a269376a4cce65c51119b1c012121639c15106a"
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-3.mmd",
+      "sha256": "3deea85694b7dff3068e56f9be5b08c1eac3bd901ce94e26e5c72e02ae0be145"
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-4.mmd",
+      "sha256": "6284466fa38148340118f68d81ae775e0f29ccaa9889eec05c05d6156442ca7f"
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-5.mmd",
+      "sha256": "b3845509d3e9473ec5c63e04451178b68be850eb9313330dacad89ffccb3fa64"
+    },
+    {
+      "path": "docs/technical/design/diagrams/technical_design-1.mmd",
+      "sha256": "755a01a133e1ccc9bb2d31ada9e84d8b8eb57a84c9393128f01e300ba0c7e0cf"
+    },
+    {
+      "path": "docs/technical/design/DTO_FIELD_MAPPING.md",
+      "sha256": "ac35e8f86c8f9df4f31be59185a0b1f33c96e157f46ebaad0f4f4fc88c8806e3"
+    },
+    {
+      "path": "docs/technical/design/EMAIL_INTEGRATION_DESIGN.md",
+      "sha256": "cc2c44bea1b17dea41e16085e8f629f66d8a10cb50fd3ebe60d72e065fd94b62"
+    },
+    {
+      "path": "docs/technical/design/ERROR_HANDLING_DESIGN.md",
+      "sha256": "443d3667e2f820e233627cc3d3924c6be3b308b2559f094e14aa16e667317610"
+    },
+    {
+      "path": "docs/technical/design/MODULE_DESIGN.md",
+      "sha256": "d494ed41e3111babb5de326ecb1ab76b3ae804e2d46f3941173e9f7ea7187827"
+    },
+    {
+      "path": "docs/technical/design/openapi.yaml",
+      "sha256": "9a5e9532b0827c73c832b61b1af9f66e83bf75d75e4c43fd7b1cdbf367db9594"
+    },
+    {
+      "path": "docs/technical/design/operation-registry.json",
+      "sha256": "f2e1fd1fd5eee384ac647950bc45fc4da0b3a3cc3cb6cabd1f8e7c8b1c5133b2"
+    },
+    {
+      "path": "docs/technical/design/REQUIREMENT_TRACEABILITY.md",
+      "sha256": "3e24faea3d5c2fd48ef1b67a1a6422c1090f71d6bce29663d702030892573948"
+    },
+    {
+      "path": "docs/technical/design/SEARCH_STORAGE_DESIGN.md",
+      "sha256": "71f62034b9e270fb8c4b0afe98aa82241ba898938f09ca60f116907668e1509d"
+    },
+    {
+      "path": "docs/technical/design/SECURITY_DESIGN.md",
+      "sha256": "599722c44e136a13c80334deea72dad628c387bec1e7d8fd18a732acbe9ca8c7"
+    },
+    {
+      "path": "docs/technical/design/sql/catalog.sql",
+      "sha256": "426b03787af0a48a7f518f4c286645b04eec3e74c461ebf9c6c558cbdf74351e"
+    },
+    {
+      "path": "docs/technical/design/sql/profile.sql",
+      "sha256": "2bda41a5ff6ae050f016790d8bb714ff8c89ac37659bbb889fe8cb50c4404d22"
+    },
+    {
+      "path": "docs/technical/design/STAGE3_DESIGN_REVIEW.md",
+      "sha256": "a58400907302fa33951f0c173155fa1c7a22e0b9f1ca10fa871be7e363f14ac7"
+    },
+    {
+      "path": "docs/technical/design/SYNC_ENGINE_DESIGN.md",
+      "sha256": "3d80fd5c4459e1644c2fac7ce72ea5c70955ac0667420912d37c464b59bc6a11"
+    },
+    {
+      "path": "docs/technical/design/SYSTEM_ARCHITECTURE.md",
+      "sha256": "22a86ad1bfa51d7e5a7f9552e8cb8bbd8932d01c16a8867bf5bed641678a8820"
+    },
+    {
+      "path": "docs/technical/design/TECHNICAL_DESIGN.md",
+      "sha256": "5be7f897480de05182dbc812f54e2b0e9b5bd59c3d47437012699212bd8eb15d"
+    },
+    {
+      "path": "docs/technical/design/TEST_PLAN.md",
+      "sha256": "331e245b11b1044cd37590bc83fd6eeffe07f99668e7f55aac3d9b9896e5fee9"
+    },
+    {
+      "path": "docs/technical/design/tools/check_design.py",
+      "sha256": "29de542550dea2c23f8ee2e8dbef3eb8251a2e8e4b319e02dfa6425e32b442ed"
+    },
+    {
+      "path": "docs/technical/design/tools/generate_adrs.py",
+      "sha256": "1d25907d41ebf1eaf2033ddb6273ef0ddae67439c787d3151da840a07a82b33f"
+    },
+    {
+      "path": "docs/technical/design/tools/generate_api.py",
+      "sha256": "884df3e067e72b6ce9c70b85dd17ca3d2a67be56a2b22badb41c2b83006f9a1b"
+    },
+    {
+      "path": "docs/technical/design/tools/generate_contracts.py",
+      "sha256": "37072e50c06d156d43df829cac9af5c1d6e39dce60978083da8cf9da06f56118"
+    },
+    {
+      "path": "docs/technical/design/tools/generate_traceability.py",
+      "sha256": "0b67311edd40866194f49ddf381a3523074100ce146930621bdef70a33928ef7"
+    },
+    {
+      "path": "docs/technical/STAGE4_ACCEPTANCE.md",
+      "sha256": "6199c3f94f7ef9f1f614cc6eee799edf269a46a5fe7aa70bc8b638705431b0ce"
+    },
+    {
+      "path": "docs/technical/STAGE4_ENGINEERING_REPORT.md",
+      "sha256": "f8029255c932314c1ab6d5e4f0f7ec2aaebd37f4a4658653e63a8813090d94b3"
+    },
+    {
+      "path": "frontend/.env.example",
+      "sha256": "5f8beedea57d3b4caa673f389691e4c820eb9f187377ff5e3c8a2793ac625e3c"
+    },
+    {
+      "path": "frontend/.prettierignore",
+      "sha256": "b324b961000363c71dc87698425463cbc9d5fd8cae6389df84a77240c7da5dd3"
+    },
+    {
+      "path": "frontend/.prettierrc.json",
+      "sha256": "566de42bb904d3de791365655384c445663e94c1d349cfaa616329c83608e7fa"
+    },
+    {
+      "path": "frontend/eslint.config.mjs",
+      "sha256": "56ca19658f90a8adfaaf4b3f7ddb688e03e4e90219f526b6469b003f4be29ba2"
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "3a7cff3dd864f11ccf8837a7370219cec7e954dfca5dc603f6702617f3a4ce8d"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "76d76f6d4bea7401f5ef705f4ca40ab4d4e565df7aeab1718843111aa01ac677"
+    },
+    {
+      "path": "frontend/playwright.config.ts",
+      "sha256": "271844bda99769ad297c93ec79c68e4a79badde3ee182e9bc8a8896fd3a17edc"
+    },
+    {
+      "path": "frontend/README.md",
+      "sha256": "208bc05695a449da179da98e14178669ace399a282767a45125b4744df65bdbc"
+    },
+    {
+      "path": "frontend/src/api/client.ts",
+      "sha256": "7ebde32a81e1cf79cfbd7b89799635eb7d4dcbe5ba9ce16af8ca95d8bcec48ce"
+    },
+    {
+      "path": "frontend/src/api/generated.d.ts",
+      "sha256": "22584d6dfb395690e53372dd0ac5683345a6ac4f404978a1f6d0c36d0fe8ee57"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "sha256": "51aa88af1efacc8189f3cb8e5d1491af4f40997466c8036a8933246dd443380d"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "sha256": "604fc4801603a139d913a3c0ba2aba6f8b4d0da0dce5d0d5995389b673b50377"
+    },
+    {
+      "path": "frontend/src/views/StatusView.vue",
+      "sha256": "7e205bcf5f76b5b69abe2abbbf1cf7b0707fed7cc991427378ee94fad3fb3e14"
+    },
+    {
+      "path": "frontend/tests/e2e/foundation.spec.ts",
+      "sha256": "45ff1849a9b731f52e651412e0c99cdfdd0e6eeb849fa63503d49d65b1336f01"
+    },
+    {
+      "path": "frontend/tests/unit/client.test.ts",
+      "sha256": "92eaf3e4ef0333d889b03853ccc934e6542e0214d4e70ea12779526973d6ec79"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "sha256": "2e6823ccedd4fb80442203078331c51d49dc26683c2cf9d4bcc30113588c305d"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "sha256": "9dc77f08303375d9796681d1b1aabf6132c9223546edfa492848a09d9a905320"
+    },
+    {
+      "path": "global.json",
+      "sha256": "90c00e3f6d115241ebc5ee2ee96f7e63f8782dcdd2a88eb67b402b7fbe41fe9e"
+    },
+    {
+      "path": "HANDOFF_VALIDATION_REPORT.md",
+      "sha256": "32223fc18160f5c7353faeadd00ae2b576e33d65d217452c31acb3e465dc662f"
+    },
+    {
+      "path": "INTEGRATION_CHECKLIST.md",
+      "sha256": "4c03c8483d4f0d2654cd1a241dea344b8838715b0314f12e04db8f7fc8225350"
+    },
+    {
+      "path": "MODULE_OWNERSHIP.md",
+      "sha256": "04ee9781ebd3457f14437a142ec9d903a16c7c10b20c2db800462a426caf1277"
+    },
+    {
+      "path": "openspec/changes/archive/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/.openspec.yaml",
+      "sha256": "8988504bad85e6baacc178879e8183a146a7060413b79c43583e79d7e504d2ca"
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/design.md",
+      "sha256": "f8512a5b2b10f8c843200d49ae57b8916f6470cdb48d4610799f08c9f30ea6ef"
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/proposal.md",
+      "sha256": "97017efa2e9be11c8493b69c1273390e90e18e2b40cfae6b0a2f06d9e36053be"
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/tasks.md",
+      "sha256": "9d48e9052da89dba51b998f5f8881684f7d1221cc6e49c8ca557275eefa9c6fc"
+    },
+    {
+      "path": "openspec/config.yaml",
+      "sha256": "59a36172108117fc06eee074cdfebec43eca06d7403df2089d004dde9dca087e"
+    },
+    {
+      "path": "openspec/specs/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "openspec/specs/account-management/spec.md",
+      "sha256": "1196ecb7feae8298e7b78c7bf7500f7fce6d11889823f15230196d3210526290"
+    },
+    {
+      "path": "openspec/specs/local-storage/spec.md",
+      "sha256": "e3c756b6ac7e84c011ada016436609e11a35b7562cfc5488d0511e803ab5916c"
+    },
+    {
+      "path": "openspec/specs/local-users/spec.md",
+      "sha256": "7c6012a006159d89f6667e293ffbc40629a5421925a3fd173fb58c8077fd9ca6"
+    },
+    {
+      "path": "openspec/specs/mail-compose/spec.md",
+      "sha256": "e1110540f17b8da91a6ea8d98b2a1925d5af088fd425cdf3b6c3e24ca7ff5e5b"
+    },
+    {
+      "path": "openspec/specs/mail-reading/spec.md",
+      "sha256": "0a9fcd66543e8495cf9cf55b3ebf69e13807e6aa711ba82f1415616dab750dd9"
+    },
+    {
+      "path": "openspec/specs/mail-search/spec.md",
+      "sha256": "e89a8c91bc7396118a04275c97782b4e54801984251227eed57e857aa1bd65b8"
+    },
+    {
+      "path": "openspec/specs/mail-sync/spec.md",
+      "sha256": "1b4746c3476cb0b328caef6fc1431c9d752d1f402fc971fa4429ae5432b40138"
+    },
+    {
+      "path": "openspec/specs/security/spec.md",
+      "sha256": "898214c7153b2abefd41e325035a5a3dc2458b69378c0ca7e19d442c5e1f3cba"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "bd67314e6f9ee249d1b0f3b798678f089b31ba416a79784c6ba1c5181f25ee4e"
+    },
+    {
+      "path": "package.json",
+      "sha256": "0463396be443810b5521125dc6f7189fffa5138236c6c586ee844090f50d36a7"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2a93d37d3324240b7340f58d344b8401ecb414709ce8f57481012a5073f7e783"
+    },
+    {
+      "path": "redocly.yaml",
+      "sha256": "865be38348c8f5493289fdfc19a351c6337c684a9c423968027293aa402de1e8"
+    },
+    {
+      "path": "TEAM_A_TASKS.md",
+      "sha256": "f5e02e094ddea744299dc00b8fe22b73b57ef85153b6c5f8213863799866f6eb"
+    },
+    {
+      "path": "TEAM_B_TASKS.md",
+      "sha256": "50a890f6ad2519c0cb0e220d4cdf3989123f3a56b346e3018d3265617a568a92"
+    },
+    {
+      "path": "tools/build-specs.py",
+      "sha256": "68a2ff6ba48bdf85420f46836c417a797ebaad9eb71e26a208421da3e822a8c9"
+    },
+    {
+      "path": "tools/check-contracts.mjs",
+      "sha256": "fcac645eb40040d7a390c91a06502de0000f9fa7df4cbb36bd16d1a8de4c9b18"
+    },
+    {
+      "path": "tools/Environment.ps1",
+      "sha256": "1e6b6c5e6e19b17a8d59faafcff080754216303cc88b1d8c35af1ffa65069b04"
+    },
+    {
+      "path": "tools/prepare-handoff.py",
+      "sha256": "1ba44d00c4b01d285636b5e07d7d981ccd23abe204d0688270fbe42278fa1295"
+    },
+    {
+      "path": "tools/Start-Engineering.ps1",
+      "sha256": "b7555f87e945c7500a8916e60875c29532623cb531475d257cf0da762c7e5300"
+    },
+    {
+      "path": "tools/Stop-Engineering.ps1",
+      "sha256": "8fdee80ac7805927179267d6be0cbef2d7a72cca2ce8fc7433dea6cd56294c65"
+    },
+    {
+      "path": "tools/Test-Quality.ps1",
+      "sha256": "80cf9b0876cce2236bcd3f59a25c0a22e0be4623755fad6a7f356ac07a098601"
+    },
+    {
+      "path": "UNASSIGNED_REQUIREMENTS.md",
+      "sha256": "4acf76f22729088e1d820bee1cee646a399c1808237ebce7c4c7367e3301136d"
+    }
+  ]
+}

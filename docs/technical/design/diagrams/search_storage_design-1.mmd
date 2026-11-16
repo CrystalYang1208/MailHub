@@ -1,0 +1,11 @@
+flowchart LR
+ H[同步邮件头] --> TX[Message与SearchDocument头 同事务]
+ TX --> FTS[FTS触发器]
+ H --> Q[正文索引待办]
+ Q --> P[BODY.PEEK / MimeKit]
+ P --> D[正文规范化与SearchDocument更新]
+ D --> FTS
+ P --> C[可选阅读缓存]
+ C --> LRU[500MB LRU]
+ LRU --> Keep[不删除SearchDocument]
+ FTS --> Query[用户范围筛选与分页]

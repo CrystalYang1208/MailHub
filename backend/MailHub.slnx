@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MailHub.Domain/MailHub.Domain.csproj" />
+    <Project Path="src/MailHub.Application/MailHub.Application.csproj" />
+    <Project Path="src/MailHub.Infrastructure/MailHub.Infrastructure.csproj" />
+    <Project Path="src/MailHub.Host/MailHub.Host.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MailHub.Tests/MailHub.Tests.csproj" />
+  </Folder>
+</Solution>

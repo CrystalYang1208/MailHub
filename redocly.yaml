@@ -1,0 +1,9 @@
+extends:
+  - minimal
+rules:
+  info-license: off
+  operation-summary: error
+  operation-operationId: error
+  no-unresolved-refs: error
+  security-defined: error
+  no-unused-components: warn

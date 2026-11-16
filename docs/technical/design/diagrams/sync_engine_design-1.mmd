@@ -1,0 +1,15 @@
+stateDiagram-v2
+ [*] --> Pending
+ Pending --> Running: 已解锁且启用/到期/有租约
+ Running --> Completed: 所有批次提交
+ Running --> Retry: 暂时网络或服务器异常
+ Retry --> Running: 到期或手动同步
+ Running --> AuthRequired: invalid_grant或无效授权
+ AuthRequired --> Pending: 重新授权通过
+ Running --> Paused: 用户锁定或账号停用
+ Pending --> Paused: 用户锁定
+ Retry --> Paused: 用户锁定
+ Paused --> Pending: 同一用户解锁且账号启用
+ Running --> Canceled: 移除或旧代任务
+ Retry --> Failed: 连续重试预算耗尽
+ Failed --> Pending: 用户手动重试

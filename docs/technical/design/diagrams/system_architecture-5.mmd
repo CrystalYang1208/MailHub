@@ -1,0 +1,19 @@
+sequenceDiagram
+ participant UI as 中文三步向导
+ participant A as Account应用服务
+ participant C as Catalog
+ participant P as Provider适配器
+ participant D as 用户数据库
+ UI->>A: 模板/通用配置与凭据（当前会话）
+ A->>C: 原子预留地址指纹
+ A->>P: 验证TLS 认证 文件夹能力
+ alt 失败
+ P-->>A: 分类错误
+ A->>C: 释放本次预留或保持冷却记录
+ A-->>UI: 中文原因和下一步
+ else 成功
+ A->>D: 单事务写账号和加密凭据
+ A->>C: 预留置active
+ A->>D: 幂等创建首次同步任务
+ A-->>UI: 账号与jobId（同步状态≤5秒反馈）
+ end

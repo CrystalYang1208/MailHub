@@ -1,0 +1,27 @@
+name: engineering-quality
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-2025
+    timeout-minutes: 25
+    env:
+      OPENSPEC_TELEMETRY: '0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.20.0'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.404'
+      - name: Pin npm
+        run: npm install --global npm@11.19.0
+      - name: Local-equivalent quality gates
+        shell: pwsh
+        run: ./tools/Test-Quality.ps1
+      # No real mailbox secrets, private logs, user databases, or evidence upload.

@@ -1,0 +1,203 @@
+{
+  "utc": "2026-11-15T15:19:04.977389+00:00",
+  "status": "DESIGN_READY_FOR_REVIEW",
+  "stage4Started": false,
+  "files": [
+    {
+      "path": "ADR/0004-local-host.md",
+      "sha256": "9a6b38864e79d068141e774ca444a7589f83ad335533f65d099497858d259807"
+    },
+    {
+      "path": "ADR/0005-profile-storage.md",
+      "sha256": "5be66286789e1fd8b0e81b173416367678e3ac9406f12ab265392a01a0a45821"
+    },
+    {
+      "path": "ADR/0006-password-envelope.md",
+      "sha256": "13ca9502510ae42074bc58d5466bfae0a4c5296ecb345bf5c72fed626b1ba877"
+    },
+    {
+      "path": "ADR/0007-body-file-storage.md",
+      "sha256": "ea2ebb0eec562e42e7c660882a925e42f1a00af64ce441324fac26046c1f2cf9"
+    },
+    {
+      "path": "ADR/0008-fts-chinese.md",
+      "sha256": "9e0b8709e608af7c3053f087927f2e1394c25ae46134ad0d71015bd9e2af665d"
+    },
+    {
+      "path": "ADR/0009-sync-transactions.md",
+      "sha256": "8eb9618b7c93f6af234b415c4e018c68107ac873874c01a0727b7219ad2d09e2"
+    },
+    {
+      "path": "ADR/0010-local-security.md",
+      "sha256": "532ea87181b5e2989ef1cffd5b4ce0490886de6f153d0ae266a9462e5f4470c4"
+    },
+    {
+      "path": "ADR/0011-provider-adapters.md",
+      "sha256": "4c96e7e2d08f8f6e89dfea7c81c5da759c60939fcd3f46ed9def5345466eabc3"
+    },
+    {
+      "path": "API_DESIGN.md",
+      "sha256": "95f56c09dcf0050bf55ba11b76f34d2f6bb3e8162c309fb3e178b71ecada093a"
+    },
+    {
+      "path": "baseline-input.json",
+      "sha256": "cb456e140361277be9698c678a10a0629c5392fa16e7c6708d4fd68d2181278d"
+    },
+    {
+      "path": "DATA_DICTIONARY.md",
+      "sha256": "3c9b3593288c5fe2db7653e06c702a94cb62384e591a4ec343180da9f7447b6a"
+    },
+    {
+      "path": "DATABASE_DESIGN.md",
+      "sha256": "ca849b875f8bc7e5579dd10f065f76dca79e29f372eff5e674ac1d9da3794b7c"
+    },
+    {
+      "path": "design-checks.initial.json",
+      "sha256": "7aac3c92169a187a6b7f31da2a7a22e1b629d5e60043a33373c438a3329cf27e"
+    },
+    {
+      "path": "design-checks.json",
+      "sha256": "f985aeae048048d4fc4194fbf9ca66eabc7b9ac66805f4ec416b26bc1ad3695f"
+    },
+    {
+      "path": "DESIGN_INPUTS.md",
+      "sha256": "f212a18be2cf25ca668183e6e2e0b61c1edca8c60e3e60e15d3e7365ff2c8d4f"
+    },
+    {
+      "path": "diagrams/database_design-1.mmd",
+      "sha256": "a6866d615b22d6943b6a54b50d3fbd9fe9351b51fdcccc9d6923e91a5be05582"
+    },
+    {
+      "path": "diagrams/email_integration_design-1.mmd",
+      "sha256": "0bd2481185d7d424ee9a8e01e3770c858844ffdcabe67ed5ac38b5e0931c1743"
+    },
+    {
+      "path": "diagrams/er.mmd",
+      "sha256": "6f2fe46dd7826d1d24dd3f063c5ee115bb8bd743309108055978cc80cb95193c"
+    },
+    {
+      "path": "diagrams/search_storage_design-1.mmd",
+      "sha256": "259c206170f251ce012e0a33fe5712c3c9932d7627c7e4dd8e257f8806ceeb2c"
+    },
+    {
+      "path": "diagrams/security_design-1.mmd",
+      "sha256": "54f1cdf8417e4fbd0df076f382d028d7ee3b6e0032afadc68dfbdd448c652597"
+    },
+    {
+      "path": "diagrams/sync_engine_design-1.mmd",
+      "sha256": "9bd254b3c1f1223fac6d39eed8c5e00f611da2658bfb9f7e3326946621a0ca20"
+    },
+    {
+      "path": "diagrams/sync_engine_design-2.mmd",
+      "sha256": "c8eab96fe908126ddf20e7cc0c1990897101e3b97820068852dddfd64777e65d"
+    },
+    {
+      "path": "diagrams/system_architecture-1.mmd",
+      "sha256": "71807734ae3c5e3fd37b003713f12e70daf266511a1bb398acc030b2ec05b82b"
+    },
+    {
+      "path": "diagrams/system_architecture-2.mmd",
+      "sha256": "bc3923eabd4d91bf77e8dd599a269376a4cce65c51119b1c012121639c15106a"
+    },
+    {
+      "path": "diagrams/system_architecture-3.mmd",
+      "sha256": "3deea85694b7dff3068e56f9be5b08c1eac3bd901ce94e26e5c72e02ae0be145"
+    },
+    {
+      "path": "diagrams/system_architecture-4.mmd",
+      "sha256": "6284466fa38148340118f68d81ae775e0f29ccaa9889eec05c05d6156442ca7f"
+    },
+    {
+      "path": "diagrams/system_architecture-5.mmd",
+      "sha256": "b3845509d3e9473ec5c63e04451178b68be850eb9313330dacad89ffccb3fa64"
+    },
+    {
+      "path": "diagrams/technical_design-1.mmd",
+      "sha256": "755a01a133e1ccc9bb2d31ada9e84d8b8eb57a84c9393128f01e300ba0c7e0cf"
+    },
+    {
+      "path": "DTO_FIELD_MAPPING.md",
+      "sha256": "ac35e8f86c8f9df4f31be59185a0b1f33c96e157f46ebaad0f4f4fc88c8806e3"
+    },
+    {
+      "path": "EMAIL_INTEGRATION_DESIGN.md",
+      "sha256": "cc2c44bea1b17dea41e16085e8f629f66d8a10cb50fd3ebe60d72e065fd94b62"
+    },
+    {
+      "path": "ERROR_HANDLING_DESIGN.md",
+      "sha256": "443d3667e2f820e233627cc3d3924c6be3b308b2559f094e14aa16e667317610"
+    },
+    {
+      "path": "MODULE_DESIGN.md",
+      "sha256": "d494ed41e3111babb5de326ecb1ab76b3ae804e2d46f3941173e9f7ea7187827"
+    },
+    {
+      "path": "openapi.yaml",
+      "sha256": "9a5e9532b0827c73c832b61b1af9f66e83bf75d75e4c43fd7b1cdbf367db9594"
+    },
+    {
+      "path": "operation-registry.json",
+      "sha256": "f2e1fd1fd5eee384ac647950bc45fc4da0b3a3cc3cb6cabd1f8e7c8b1c5133b2"
+    },
+    {
+      "path": "REQUIREMENT_TRACEABILITY.md",
+      "sha256": "3e24faea3d5c2fd48ef1b67a1a6422c1090f71d6bce29663d702030892573948"
+    },
+    {
+      "path": "SEARCH_STORAGE_DESIGN.md",
+      "sha256": "71f62034b9e270fb8c4b0afe98aa82241ba898938f09ca60f116907668e1509d"
+    },
+    {
+      "path": "SECURITY_DESIGN.md",
+      "sha256": "599722c44e136a13c80334deea72dad628c387bec1e7d8fd18a732acbe9ca8c7"
+    },
+    {
+      "path": "sql/catalog.sql",
+      "sha256": "426b03787af0a48a7f518f4c286645b04eec3e74c461ebf9c6c558cbdf74351e"
+    },
+    {
+      "path": "sql/profile.sql",
+      "sha256": "2bda41a5ff6ae050f016790d8bb714ff8c89ac37659bbb889fe8cb50c4404d22"
+    },
+    {
+      "path": "STAGE3_DESIGN_REVIEW.md",
+      "sha256": "a58400907302fa33951f0c173155fa1c7a22e0b9f1ca10fa871be7e363f14ac7"
+    },
+    {
+      "path": "SYNC_ENGINE_DESIGN.md",
+      "sha256": "3d80fd5c4459e1644c2fac7ce72ea5c70955ac0667420912d37c464b59bc6a11"
+    },
+    {
+      "path": "SYSTEM_ARCHITECTURE.md",
+      "sha256": "22a86ad1bfa51d7e5a7f9552e8cb8bbd8932d01c16a8867bf5bed641678a8820"
+    },
+    {
+      "path": "TECHNICAL_DESIGN.md",
+      "sha256": "5be7f897480de05182dbc812f54e2b0e9b5bd59c3d47437012699212bd8eb15d"
+    },
+    {
+      "path": "TEST_PLAN.md",
+      "sha256": "331e245b11b1044cd37590bc83fd6eeffe07f99668e7f55aac3d9b9896e5fee9"
+    },
+    {
+      "path": "tools/check_design.py",
+      "sha256": "29de542550dea2c23f8ee2e8dbef3eb8251a2e8e4b319e02dfa6425e32b442ed"
+    },
+    {
+      "path": "tools/generate_adrs.py",
+      "sha256": "1d25907d41ebf1eaf2033ddb6273ef0ddae67439c787d3151da840a07a82b33f"
+    },
+    {
+      "path": "tools/generate_api.py",
+      "sha256": "884df3e067e72b6ce9c70b85dd17ca3d2a67be56a2b22badb41c2b83006f9a1b"
+    },
+    {
+      "path": "tools/generate_contracts.py",
+      "sha256": "37072e50c06d156d43df829cac9af5c1d6e39dce60978083da8cf9da06f56118"
+    },
+    {
+      "path": "tools/generate_traceability.py",
+      "sha256": "0b67311edd40866194f49ddf381a3523074100ce146930621bdef70a33928ef7"
+    }
+  ]
+}

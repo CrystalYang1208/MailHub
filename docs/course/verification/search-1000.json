@@ -1,0 +1,12 @@
+{
+  "messages": 1000,
+  "measurementsMs": [
+    12.2765,
+    6.4238,
+    5.9922
+  ],
+  "limitMs": 1000,
+  "status": "PASS",
+  "source": "synthetic SQLite integration test",
+  "realMailboxes": false
+}

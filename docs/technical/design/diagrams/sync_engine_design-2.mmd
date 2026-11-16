@@ -1,0 +1,22 @@
+sequenceDiagram
+ participant Sch as 调度与用户租约
+ participant IM as IMAP
+ participant DB as 单用户SQLite
+ Sch->>DB: CAS领取job及断点
+ Sch->>IM: 连接/认证/SELECT或EXAMINE
+ IM-->>Sch: UIDVALIDITY UIDNEXT 能力
+ Sch->>DB: 保存固定扫描范围
+ loop 每批次
+ Sch->>IM: UID SEARCH / FETCH头（写事务外）
+ IM-->>Sch: 不可变头DTO与存在UID
+ Sch->>DB: BEGIN IMMEDIATE
+ Sch->>DB: 校验用户/账号/文件夹epoch及job lease
+ Sch->>DB: Upsert Message与SearchDocument头
+ Sch->>DB: 更新checkpoint/last_uid与进度
+ Sch->>DB: COMMIT
+ end
+ alt 网络中断
+ Sch->>DB: 单独事务写retry与due，不推进失败批游标
+ else 完成
+ Sch->>DB: job completed，发布进度事件
+ end

@@ -1,0 +1,12 @@
+stateDiagram-v2
+ [*] --> Editing
+ Editing --> Queued: 保存冻结版本与幂等提交
+ Queued --> Preparing: 发布MIME与信封快照
+ Preparing --> Submitting: 持久标记后开始SMTP
+ Submitting --> Accepted: 收到最终成功响应
+ Submitting --> Failed: 明确拒绝且确认未接受
+ Submitting --> Unknown: DATA后断线或进程退出
+ Preparing --> Failed: 网络连接或校验失败
+ Failed --> Editing: 用户修正并保留草稿
+ Unknown --> Accepted: 有可信Sent副本/用户确认
+ Unknown --> Editing: 用户明确决定可能重复后重新发送

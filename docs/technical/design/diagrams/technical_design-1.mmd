@@ -1,0 +1,17 @@
+sequenceDiagram
+ participant U as 用户
+ participant W as Web
+ participant H as Host/Security
+ participant C as Catalog
+ participant P as 用户库与工作队列
+ U->>H: 启动本地程序
+ H-->>W: 一次性fragment引导链接
+ W->>H: POST bootstrap
+ H-->>W: BridgeToken（内存）
+ W->>H: 选择用户+密码
+ H->>C: 验证值/解封UMK
+ H-->>W: 会话Token（内存）
+ W->>H: 请求列表（双token）
+ H->>P: 已认证用户的库查询
+ P-->>W: 缓存列表
+ H->>P: 恢复该用户到期任务

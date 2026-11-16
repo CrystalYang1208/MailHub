@@ -1,0 +1,70 @@
+{
+  "date": "2026-11-16",
+  "environment": {
+    "os": "Linux Debian 13 x64",
+    "dotnetSdk": "10.0.404",
+    "dotnetRuntime": "10.0.15",
+    "node": "24.22.1",
+    "npm": "11.9.0",
+    "browser": "installed Chromium headless"
+  },
+  "backend": {
+    "passed": 26,
+    "failed": 0
+  },
+  "frontendUnit": {
+    "passed": 3,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 7,
+    "failed": 0,
+    "flaky": 0,
+    "viewports": [
+      1440,
+      768,
+      390
+    ]
+  },
+  "openSpec": {
+    "version": "2.0.0",
+    "strictPassed": 10,
+    "strictFailed": 0
+  },
+  "api": {
+    "operations": 51,
+    "schemas": 44,
+    "redoclyWarnings": 2,
+    "warningsReason": "保留的CredentialInput not/required规则提示"
+  },
+  "build": {
+    "backend": "PASS",
+    "frontend": "PASS",
+    "typescript": "PASS",
+    "eslint": "PASS",
+    "prettier": "PASS",
+    "dotnetFormat": "PASS"
+  },
+  "dependencyAudit": {
+    "npmKnownVulnerabilities": 0,
+    "nugetKnownVulnerabilities": 0
+  },
+  "search1000": {
+    "messages": 1000,
+    "measurementsMs": [
+      12.2765,
+      6.4238,
+      5.9922
+    ],
+    "limitMs": 1000,
+    "status": "PASS",
+    "source": "synthetic SQLite integration test",
+    "realMailboxes": false
+  },
+  "realMailboxes": 0,
+  "windowsRuntime": "NOT_TESTED",
+  "dpapi": "NOT_TESTED",
+  "realGmailOAuth": "NOT_TESTED",
+  "outlookMicrosoftOAuth": "NOT_IMPLEMENTED; parameter template with generic adapter only",
+  "acceptance": "IMPLEMENTED_AND_SYNTHETICALLY_VERIFIED; EXTERNAL_ACCEPTANCE_PENDING"
+}

@@ -1,0 +1,38 @@
+schema: spec-driven
+
+context: |
+  Language: zh-CN
+  All artifacts must be written in zh-CN.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+  MailHub is a Windows 11-only local browser workspace. Approved design is in docs/technical/design.
+  Vue3.5/TypeScript/Element Plus/Vite, .NET10, MailKit/MimeKit, SQLite/FTS5 and DPAPI are fixed.
+  There are 35 FR: 24 Must and 11 Should. Specs describe approved target behavior, not completed code.
+  One active application user; locking pauses that user's work. Four local application users maximum.
+  F03 keeps account configuration and drafts and pauses automatic repopulation.
+  Reply references received-original headers; forward is independent with quoted content; no conversation UI.
+  Keep original AC01-12; approved AC13/14 and CR01-08 are in requirements/traceability records.
+  Never access real mailboxes, OAuth or private validation data for engineering demos. No cloud AI/relay.
+  Product OpenAPI and SQL are byte-identical imports of approved design; do not alter them for a demo.
+  Do not start stage-five business work without owner approval. Keep deferred work unchecked.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always state what is out of scope
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

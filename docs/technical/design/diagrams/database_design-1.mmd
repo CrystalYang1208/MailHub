@@ -1,0 +1,25 @@
+erDiagram
+ LocalUser ||--|| UserKeyEnvelope : seals
+ LocalUser ||--o{ AccountReservation : reserves
+ LocalUser ||--o{ CatalogOperation : recovers
+ Profile ||--o{ MailAccount : owns
+ MailAccount ||--|| AuthCredential : uses
+ MailAccount ||--o{ Folder : contains
+ Folder ||--o{ Message : identifies
+ Message ||--o| MessageBody : caches
+ Message ||--|| SearchDocument : indexes
+ SearchDocument ||--|| MessageSearch : triggers
+ Message ||--o{ Attachment : has
+ FileObject |o--o{ Attachment : caches
+ Folder ||--o{ SyncJob : schedules
+ SyncJob ||--o| SyncCheckpoint : checkpoints
+ Folder ||--o{ FolderScan : scans
+ FolderScan ||--o{ ScanUid : observes
+ MailAccount ||--o{ Draft : sends
+ Draft ||--o{ DraftAttachment : links
+ FileObject ||--o{ DraftAttachment : retains
+ Draft ||--o{ OutboxSubmission : submits
+ OutboxSubmission ||--o{ OutboxRecipient : addresses
+ SyncJob ||--o| MailMutation : applies
+ DownloadBatch ||--o{ DownloadItem : contains
+ Attachment ||--o{ DownloadItem : selects

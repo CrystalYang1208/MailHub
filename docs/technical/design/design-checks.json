@@ -1,0 +1,88 @@
+{
+  "utc": "2026-11-15T15:17:45.721022+00:00",
+  "scope": "Stage-three design checks only; not product functional acceptance; no prior stage benchmarks rerun",
+  "results": [
+    {
+      "check": "baseline-source-priorities",
+      "status": "PASS",
+      "details": {
+        "fr": 35,
+        "must": 24,
+        "should": 11,
+        "nfr": 14,
+        "br": 10,
+        "originalAC": 12,
+        "originalCR": 7,
+        "sourceUnchanged": true
+      }
+    },
+    {
+      "check": "openapi-local-refs-and-schemas",
+      "status": "PASS",
+      "details": {
+        "operations": 51,
+        "schemas": 44,
+        "resolvedLocalReferences": 45,
+        "pathParametersValid": true,
+        "scope": "OAS structure and JSON Schema checks; not third-party full OAS linter or running API"
+      }
+    },
+    {
+      "check": "schema-input-boundaries",
+      "status": "PASS",
+      "details": {
+        "credentialOneOf": true,
+        "unknownResolutionRequiresExplicitRisk": true,
+        "searchQueryRequired": true,
+        "scope": "Schema examples only; no credentials or API requests"
+      }
+    },
+    {
+      "check": "requirement-traceability",
+      "status": "PASS",
+      "details": {
+        "all35FRToAPIAndTest": true,
+        "original12ACVerbatim": true,
+        "all14NFRAnd10BRMapped": true,
+        "cr01to08Present": true
+      }
+    },
+    {
+      "check": "new-sql-contract-sanity",
+      "status": "PASS",
+      "details": {
+        "tablesIncludingFTSInternal": {
+          "catalog": 5,
+          "profile": 28
+        },
+        "fourSlotAndUniqueAddressConstraints": true,
+        "newDDLQuotaTriggerAndFTSCascade": true,
+        "unknownResolutionConstraint": true,
+        "generationChangeGuard": true,
+        "scope": "Tiny in-memory SQL constraint sanity; no pressure/performance/UIDVALIDITY algorithm/mailbox tests; WAL runtime not tested here",
+        "checkerSQLite": "3.45.3"
+      }
+    },
+    {
+      "check": "dto-to-sql-fields",
+      "status": "PASS",
+      "details": {
+        "mappedCoreTables": 8,
+        "coreMappingColumnsExist": true,
+        "scope": "Explicit DTO mapping column check; business semantics additionally reviewed in docs"
+      }
+    },
+    {
+      "check": "deliverables-links-and-diagram-sources",
+      "status": "PASS",
+      "details": {
+        "requiredDocuments": 13,
+        "adrs": 8,
+        "linksChecked": 31,
+        "extractedMermaidBlocks": 12,
+        "mermaidScope": "Source/fence/type review and exported .mmd; no external Mermaid renderer run"
+      }
+    }
+  ],
+  "status": "PASS"
+}

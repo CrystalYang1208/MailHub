@@ -1,0 +1,1566 @@
+[
+  {
+    "method": "post",
+    "path": "/bridge/bootstrap",
+    "id": "bootstrapBridge",
+    "module": "Security",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "一次性启动引导码换进程令牌",
+    "request": "BridgeBootstrap",
+    "result": "BridgeAccess",
+    "status": 200,
+    "bridge_only": false,
+    "public": true,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "BOOTSTRAP_EXPIRED",
+      "BOOTSTRAP_REPLAY"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/users",
+    "id": "listUsers",
+    "module": "Settings",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "列出最多四个本地用户名称，不返回密钥/账号",
+    "request": null,
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/User"
+      }
+    },
+    "status": 200,
+    "bridge_only": true,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/users",
+    "id": "registerUser",
+    "module": "Settings",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "注册本地用户并初始化密钥与用户库",
+    "request": "RegisterRequest",
+    "result": "User",
+    "status": 201,
+    "bridge_only": true,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "USER_LIMIT",
+      "NAME_EXISTS"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/sessions",
+    "id": "login",
+    "module": "Security",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "密码认证并解封主密钥",
+    "request": "LoginRequest",
+    "result": "Session",
+    "status": 200,
+    "bridge_only": true,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "LOGIN_INVALID",
+      "LOGIN_COOLDOWN",
+      "KEY_UNAVAILABLE"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/sessions/current",
+    "id": "getCurrentSession",
+    "module": "Security",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "当前用户信息",
+    "request": null,
+    "result": "User",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "delete",
+    "path": "/sessions/current",
+    "id": "logout",
+    "module": "Security",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "撤销会话、取消任务并清密钥",
+    "request": null,
+    "result": "Ack",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/sessions/switch",
+    "id": "switchUser",
+    "module": "Security",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "先退出旧身份再验证目标密码；失败保持锁定",
+    "request": "LoginRequest",
+    "result": "Session",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "LOGIN_INVALID",
+      "LOGIN_COOLDOWN"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "put",
+    "path": "/users/current/password",
+    "id": "changePassword",
+    "module": "Security",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "原子更换验证值和密钥封套并注销全部会话",
+    "request": "PasswordChange",
+    "result": "Ack",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "PASSWORD_INVALID",
+      "KEY_UNAVAILABLE"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "delete",
+    "path": "/users/current",
+    "id": "deleteUser",
+    "module": "Settings",
+    "fr": [
+      "FR-F01"
+    ],
+    "summary": "本人再次密码确认后清本地数据，非远程删信",
+    "request": "LoginRequest",
+    "result": "Operation",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "LOGIN_INVALID"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/providers",
+    "id": "listProviders",
+    "module": "Account",
+    "fr": [
+      "FR-A01",
+      "FR-A02",
+      "FR-A03",
+      "FR-A04"
+    ],
+    "summary": "模板与三步中文授权指引",
+    "request": null,
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Provider"
+      }
+    },
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "put",
+    "path": "/settings/oauth-client",
+    "id": "importOAuthClient",
+    "module": "Account",
+    "fr": [
+      "FR-A03"
+    ],
+    "summary": "导入本用户Google桌面客户端配置",
+    "request": "OAuthClientImport",
+    "result": "Ack",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "OAUTH_CLIENT_INVALID"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/oauth/flows",
+    "id": "startOAuth",
+    "module": "Account",
+    "fr": [
+      "FR-A03",
+      "FR-A07"
+    ],
+    "summary": "创建桌面PKCE授权流程",
+    "request": "OAuthStart",
+    "result": "OAuthFlow",
+    "status": 201,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "OAUTH_CLIENT_MISSING"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/oauth/flows/{flowId}",
+    "id": "getOAuthFlow",
+    "module": "Account",
+    "fr": [
+      "FR-A03",
+      "FR-A07"
+    ],
+    "summary": "查询授权状态，不返回邮箱令牌",
+    "request": null,
+    "result": "OAuthFlow",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "OAUTH_FLOW_EXPIRED"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/accounts/validations",
+    "id": "validateAccount",
+    "module": "Account",
+    "fr": [
+      "FR-A01",
+      "FR-A02",
+      "FR-A03",
+      "FR-A04",
+      "FR-A05",
+      "FR-A06"
+    ],
+    "summary": "校验配置、授权及文件夹，返回短期绑定验证结果",
+    "request": "AccountValidationRequest",
+    "result": "AccountValidation",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "AUTH_FAILED",
+      "IMAP_DISABLED",
+      "SERVER_CONFIG",
+      "NETWORK_UNREACHABLE",
+      "AUTH_COOLDOWN",
+      "TLS_FAILED",
+      "PROVIDER_REJECTED"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/accounts",
+    "id": "addAccount",
+    "module": "Account",
+    "fr": [
+      "FR-A01",
+      "FR-A06"
+    ],
+    "summary": "消费验证结果并原子保存账号密文",
+    "request": "AccountCreate",
+    "result": "Account",
+    "status": 201,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "ACCOUNT_EXISTS",
+      "VALIDATION_EXPIRED"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/accounts",
+    "id": "listAccounts",
+    "module": "Account",
+    "fr": [
+      "FR-A02",
+      "FR-C02"
+    ],
+    "summary": "本用户账号列表",
+    "request": null,
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Account"
+      }
+    },
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/accounts/{accountId}",
+    "id": "getAccount",
+    "module": "Account",
+    "fr": [
+      "FR-A06"
+    ],
+    "summary": "账号详情，绝不返回凭据",
+    "request": null,
+    "result": "Account",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "patch",
+    "path": "/accounts/{accountId}",
+    "id": "setAccountEnabled",
+    "module": "Account",
+    "fr": [
+      "FR-A09"
+    ],
+    "summary": "仅修改启停，不恢复已取消显示名/同步范围功能",
+    "request": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
+    "result": "Account",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "ACCOUNT_BUSY"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/accounts/{accountId}/reauthorize",
+    "id": "reauthorizeAccount",
+    "module": "Account",
+    "fr": [
+      "FR-A07"
+    ],
+    "summary": "验证并替换凭据，保留账号及邮件",
+    "request": "CredentialInput",
+    "result": "Account",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "AUTH_FAILED",
+      "AUTH_COOLDOWN"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "delete",
+    "path": "/accounts/{accountId}",
+    "id": "removeAccount",
+    "module": "Account",
+    "fr": [
+      "FR-A08"
+    ],
+    "summary": "取消任务并清账号、凭据、邮件、索引和关联文件",
+    "request": null,
+    "result": "Operation",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/accounts/{accountId}/folders",
+    "id": "listFolders",
+    "module": "Mail",
+    "fr": [
+      "FR-C07",
+      "FR-C08"
+    ],
+    "summary": "文件夹及服务器确认未读数",
+    "request": null,
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Folder"
+      }
+    },
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/messages",
+    "id": "listMessages",
+    "module": "Mail",
+    "fr": [
+      "FR-C01",
+      "FR-C02",
+      "FR-C07"
+    ],
+    "summary": "统一收件箱默认聚合inbox，按收信时间倒序",
+    "request": null,
+    "result": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/MessageSummary"
+          }
+        },
+        "nextCursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasMore": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "hasMore"
+      ],
+      "additionalProperties": false
+    },
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": true,
+    "extra": [
+      {
+        "name": "accountId",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "当前用户账号"
+      },
+      {
+        "name": "folderId",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "文件夹必须属于所选账号"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC3339 UTC，必须以Z结尾"
+        },
+        "description": "收信时间下界（含）"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC3339 UTC，必须以Z结尾"
+        },
+        "description": "收信时间上界（不含）"
+      },
+      {
+        "name": "isRead",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "服务端已确认的已读值"
+      },
+      {
+        "name": "hasAttachments",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "附件过滤"
+      }
+    ],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/messages/{messageId}",
+    "id": "getMessage",
+    "module": "Mail",
+    "fr": [
+      "FR-C03"
+    ],
+    "summary": "头部详情和附件元数据",
+    "request": null,
+    "result": "MessageDetail",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/messages/{messageId}/body",
+    "id": "getMessageBody",
+    "module": "Mail",
+    "fr": [
+      "FR-C03"
+    ],
+    "summary": "缓存读取或入队BODY.PEEK，阅读不自动置已读",
+    "request": null,
+    "result": "Body",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "STALE_GENERATION"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "patch",
+    "path": "/messages/{messageId}/read",
+    "id": "setMessageRead",
+    "module": "Mail",
+    "fr": [
+      "FR-C05"
+    ],
+    "summary": "排队修改服务器FLAGS，确认前保持服务器缓存值",
+    "request": "ReadMutation",
+    "result": "Job",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "AUTH_REQUIRED",
+      "ACCOUNT_DISABLED"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/messages/{messageId}/trash",
+    "id": "moveMessageToTrash",
+    "module": "Mail",
+    "fr": [
+      "FR-C06"
+    ],
+    "summary": "只移服务端垃圾箱，禁止永久删除",
+    "request": null,
+    "result": "Job",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "TRASH_UNSUPPORTED",
+      "ALREADY_IN_TRASH",
+      "STALE_GENERATION"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/messages/{messageId}/reply",
+    "id": "createReply",
+    "module": "Compose",
+    "fr": [
+      "FR-D02"
+    ],
+    "summary": "按真实收到原邮件头派生回复草稿",
+    "request": "DeriveDraft",
+    "result": "Draft",
+    "status": 201,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/messages/{messageId}/forward",
+    "id": "createForward",
+    "module": "Compose",
+    "fr": [
+      "FR-D02"
+    ],
+    "summary": "派生独立转发草稿并携带引用，不合并会话",
+    "request": "DeriveDraft",
+    "result": "Draft",
+    "status": 201,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/drafts",
+    "id": "createDraft",
+    "module": "Compose",
+    "fr": [
+      "FR-D01",
+      "FR-D03",
+      "FR-D04"
+    ],
+    "summary": "创建独立本地草稿",
+    "request": "DraftCreate",
+    "result": "Draft",
+    "status": 201,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/drafts",
+    "id": "listDrafts",
+    "module": "Compose",
+    "fr": [
+      "FR-D03",
+      "FR-D04"
+    ],
+    "summary": "当前用户草稿列表",
+    "request": null,
+    "result": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Draft"
+          }
+        },
+        "nextCursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasMore": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "hasMore"
+      ],
+      "additionalProperties": false
+    },
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": true,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/drafts/{draftId}",
+    "id": "getDraft",
+    "module": "Compose",
+    "fr": [
+      "FR-D03",
+      "FR-D04"
+    ],
+    "summary": "恢复完整草稿",
+    "request": null,
+    "result": "Draft",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "put",
+    "path": "/drafts/{draftId}",
+    "id": "saveDraft",
+    "module": "Compose",
+    "fr": [
+      "FR-D03",
+      "FR-D04"
+    ],
+    "summary": "按版本保存草稿",
+    "request": "DraftUpdate",
+    "result": "Draft",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [
+      {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "草稿ETag，例双引号内版本数字"
+      }
+    ],
+    "errors": [
+      "VERSION_CONFLICT",
+      "DRAFT_BUSY"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "delete",
+    "path": "/drafts/{draftId}",
+    "id": "deleteDraft",
+    "module": "Compose",
+    "fr": [
+      "FR-D03"
+    ],
+    "summary": "删除本人草稿；unknown提交必须先对账",
+    "request": null,
+    "result": "Ack",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [
+      {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "当前草稿版本"
+      }
+    ],
+    "errors": [
+      "DRAFT_BUSY",
+      "VERSION_CONFLICT"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/drafts/{draftId}/attachments",
+    "id": "uploadDraftAttachment",
+    "module": "Compose",
+    "fr": [
+      "FR-D05"
+    ],
+    "summary": "上传并持久化草稿附件；发送总解码附件<=25MB",
+    "request": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "format": "binary"
+        }
+      },
+      "required": [
+        "file"
+      ],
+      "additionalProperties": false
+    },
+    "result": "DraftFile",
+    "status": 201,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [
+      {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "当前草稿版本"
+      }
+    ],
+    "errors": [
+      "ATTACHMENT_TOO_LARGE",
+      "VERSION_CONFLICT",
+      "DRAFT_BUSY"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": true
+  },
+  {
+    "method": "delete",
+    "path": "/drafts/{draftId}/attachments/{fileId}",
+    "id": "removeDraftAttachment",
+    "module": "Compose",
+    "fr": [
+      "FR-D05"
+    ],
+    "summary": "解绑草稿附件并排队清理无引用对象",
+    "request": null,
+    "result": "Ack",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [
+      {
+        "name": "If-Match",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "description": "当前草稿版本"
+      }
+    ],
+    "errors": [
+      "DRAFT_BUSY",
+      "VERSION_CONFLICT"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/drafts/{draftId}/send",
+    "id": "sendDraft",
+    "module": "Compose",
+    "fr": [
+      "FR-D01",
+      "FR-D02",
+      "FR-D04",
+      "FR-D05"
+    ],
+    "summary": "冻结草稿并建立幂等发送提交",
+    "request": "SendRequest",
+    "result": "Submission",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [
+      {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 16,
+          "maxLength": 128
+        },
+        "description": "同一冻结版本重试HTTP请求必须复用"
+      }
+    ],
+    "errors": [
+      "VERSION_CONFLICT",
+      "IDEMPOTENCY_CONFLICT",
+      "DRAFT_BUSY",
+      "ATTACHMENT_TOO_LARGE",
+      "AUTH_REQUIRED"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/submissions/{submissionId}",
+    "id": "getSubmission",
+    "module": "Compose",
+    "fr": [
+      "FR-D04"
+    ],
+    "summary": "查询SMTP接受/明确失败/结果未知，不冒充收件端送达",
+    "request": null,
+    "result": "Submission",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/submissions/{submissionId}/resolve",
+    "id": "resolveSubmission",
+    "module": "Compose",
+    "fr": [
+      "FR-D04"
+    ],
+    "summary": "仅本人处置unknown；允许新提交必须确认可能重复，原unknown事实保留",
+    "request": "SubmissionResolution",
+    "result": "Submission",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "SUBMISSION_NOT_UNKNOWN",
+      "DUPLICATE_RISK_NOT_CONFIRMED"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/downloads",
+    "id": "createDownloadBatch",
+    "module": "Mail",
+    "fr": [
+      "FR-C04"
+    ],
+    "summary": "创建单个或批量附件下载；25MB单项、200MB累计",
+    "request": "DownloadRequest",
+    "result": "DownloadBatch",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "DOWNLOAD_LIMIT",
+      "ATTACHMENT_TOO_LARGE"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/downloads/{batchId}",
+    "id": "getDownloadBatch",
+    "module": "Mail",
+    "fr": [
+      "FR-C04"
+    ],
+    "summary": "查询下载及中断原因",
+    "request": null,
+    "result": "DownloadBatch",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/attachments/{attachmentId}/content",
+    "id": "getAttachmentContent",
+    "module": "Mail",
+    "fr": [
+      "FR-C04"
+    ],
+    "summary": "下载已就绪附件，浏览器选择保存目录",
+    "request": null,
+    "result": "Ack",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "ATTACHMENT_NOT_READY"
+    ],
+    "priority": null,
+    "binary": true,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/sync",
+    "id": "requestSync",
+    "module": "Sync",
+    "fr": [
+      "FR-B01",
+      "FR-B02",
+      "FR-B03",
+      "FR-B04",
+      "FR-B05",
+      "FR-B06"
+    ],
+    "summary": "单账号/全部手动同步，5秒内返回任务",
+    "request": "SyncRequest",
+    "result": "SyncAccepted",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "AUTH_REQUIRED",
+      "AUTH_COOLDOWN",
+      "ACCOUNT_DISABLED"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/sync/jobs",
+    "id": "listSyncJobs",
+    "module": "Sync",
+    "fr": [
+      "FR-B03",
+      "FR-B05",
+      "FR-B07",
+      "FR-B08"
+    ],
+    "summary": "任务状态、进度及脱敏错误",
+    "request": null,
+    "result": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Job"
+          }
+        },
+        "nextCursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasMore": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "hasMore"
+      ],
+      "additionalProperties": false
+    },
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": true,
+    "extra": [
+      {
+        "name": "accountId",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "按账号"
+      },
+      {
+        "name": "state",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "按状态"
+      }
+    ],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/sync/jobs/{jobId}",
+    "id": "getSyncJob",
+    "module": "Sync",
+    "fr": [
+      "FR-B05",
+      "FR-B07"
+    ],
+    "summary": "任务状态与最后错误",
+    "request": null,
+    "result": "Job",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/sync/jobs/{jobId}/retry",
+    "id": "retrySyncJob",
+    "module": "Sync",
+    "fr": [
+      "FR-B03",
+      "FR-B05"
+    ],
+    "summary": "手动重置网络退避；不绕过认证冷却",
+    "request": null,
+    "result": "Job",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "AUTH_COOLDOWN",
+      "AUTH_REQUIRED",
+      "JOB_NOT_RETRYABLE"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/search",
+    "id": "searchMessages",
+    "module": "Search",
+    "fr": [
+      "FR-E01",
+      "FR-E02"
+    ],
+    "summary": "当前用户跨账号本地搜索，返回正文覆盖状态",
+    "request": null,
+    "result": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/MessageSummary"
+          }
+        },
+        "nextCursor": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasMore": {
+          "type": "boolean"
+        },
+        "coverage": {
+          "$ref": "#/components/schemas/Coverage"
+        }
+      },
+      "required": [
+        "items",
+        "nextCursor",
+        "hasMore",
+        "coverage"
+      ],
+      "additionalProperties": false
+    },
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": true,
+    "extra": [
+      {
+        "name": "q",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "description": "NFC、trim后的字面搜索词，拒绝空串"
+      },
+      {
+        "name": "accountId",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "当前用户账号"
+      },
+      {
+        "name": "folderId",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "description": "文件夹必须属于所选账号"
+      },
+      {
+        "name": "from",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC3339 UTC，必须以Z结尾"
+        },
+        "description": "收信时间下界（含）"
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC3339 UTC，必须以Z结尾"
+        },
+        "description": "收信时间上界（不含）"
+      },
+      {
+        "name": "isRead",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "服务端已确认的已读值"
+      },
+      {
+        "name": "hasAttachments",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "附件过滤"
+      }
+    ],
+    "errors": [
+      "QUERY_INVALID",
+      "QUERY_TOO_EXPENSIVE",
+      "CURSOR_INVALID"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/settings",
+    "id": "getSettings",
+    "module": "Settings",
+    "fr": [
+      "FR-B04",
+      "FR-F02",
+      "FR-F03"
+    ],
+    "summary": "用户设置及缓存/索引/附件容量",
+    "request": null,
+    "result": "Settings",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "patch",
+    "path": "/settings",
+    "id": "updateSettings",
+    "module": "Settings",
+    "fr": [
+      "FR-B04",
+      "FR-F02"
+    ],
+    "summary": "更新同步间隔或在同事务淘汰后降低配额",
+    "request": "SettingsUpdate",
+    "result": "Settings",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [
+      "CACHE_QUOTA",
+      "STORAGE_FULL"
+    ],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "delete",
+    "path": "/settings/body-cache",
+    "id": "clearBodyCache",
+    "module": "Settings",
+    "fr": [
+      "FR-F02"
+    ],
+    "summary": "只清阅读正文，保留头/索引/草稿",
+    "request": null,
+    "result": "Ack",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "post",
+    "path": "/settings/mail-data/clear",
+    "id": "clearMailData",
+    "module": "Settings",
+    "fr": [
+      "FR-F03"
+    ],
+    "summary": "清本地邮件和索引，保留账号/凭据/草稿并暂停自动补拉",
+    "request": {
+      "type": "object",
+      "properties": {
+        "confirm": {
+          "const": true
+        }
+      },
+      "required": [
+        "confirm"
+      ],
+      "additionalProperties": false
+    },
+    "result": "Operation",
+    "status": 202,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  },
+  {
+    "method": "get",
+    "path": "/operations/{operationId}",
+    "id": "getOperation",
+    "module": "Settings",
+    "fr": [
+      "FR-A08",
+      "FR-F01",
+      "FR-F03"
+    ],
+    "summary": "查询当前用户异步清理状态",
+    "request": null,
+    "result": "Operation",
+    "status": 200,
+    "bridge_only": false,
+    "public": false,
+    "paging": false,
+    "extra": [],
+    "errors": [],
+    "priority": null,
+    "binary": false,
+    "multipart": false
+  }
+]

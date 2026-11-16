@@ -1,0 +1,257 @@
+[
+  {
+    "path": "/api/v1/bridge/bootstrap",
+    "method": "POST",
+    "operationId": "bootstrapBridge"
+  },
+  {
+    "path": "/api/v1/users",
+    "method": "GET",
+    "operationId": "listUsers"
+  },
+  {
+    "path": "/api/v1/users",
+    "method": "POST",
+    "operationId": "registerUser"
+  },
+  {
+    "path": "/api/v1/sessions",
+    "method": "POST",
+    "operationId": "login"
+  },
+  {
+    "path": "/api/v1/sessions/current",
+    "method": "GET",
+    "operationId": "getCurrentSession"
+  },
+  {
+    "path": "/api/v1/sessions/current",
+    "method": "DELETE",
+    "operationId": "logout"
+  },
+  {
+    "path": "/api/v1/sessions/switch",
+    "method": "POST",
+    "operationId": "switchUser"
+  },
+  {
+    "path": "/api/v1/users/current/password",
+    "method": "PUT",
+    "operationId": "changePassword"
+  },
+  {
+    "path": "/api/v1/users/current",
+    "method": "DELETE",
+    "operationId": "deleteUser"
+  },
+  {
+    "path": "/api/v1/providers",
+    "method": "GET",
+    "operationId": "listProviders"
+  },
+  {
+    "path": "/api/v1/settings/oauth-client",
+    "method": "PUT",
+    "operationId": "importOAuthClient"
+  },
+  {
+    "path": "/api/v1/oauth/flows",
+    "method": "POST",
+    "operationId": "startOAuth"
+  },
+  {
+    "path": "/api/v1/oauth/flows/{flowId}",
+    "method": "GET",
+    "operationId": "getOAuthFlow"
+  },
+  {
+    "path": "/api/v1/accounts/validations",
+    "method": "POST",
+    "operationId": "validateAccount"
+  },
+  {
+    "path": "/api/v1/accounts",
+    "method": "POST",
+    "operationId": "addAccount"
+  },
+  {
+    "path": "/api/v1/accounts",
+    "method": "GET",
+    "operationId": "listAccounts"
+  },
+  {
+    "path": "/api/v1/accounts/{accountId}",
+    "method": "GET",
+    "operationId": "getAccount"
+  },
+  {
+    "path": "/api/v1/accounts/{accountId}",
+    "method": "PATCH",
+    "operationId": "setAccountEnabled"
+  },
+  {
+    "path": "/api/v1/accounts/{accountId}",
+    "method": "DELETE",
+    "operationId": "removeAccount"
+  },
+  {
+    "path": "/api/v1/accounts/{accountId}/reauthorize",
+    "method": "POST",
+    "operationId": "reauthorizeAccount"
+  },
+  {
+    "path": "/api/v1/accounts/{accountId}/folders",
+    "method": "GET",
+    "operationId": "listFolders"
+  },
+  {
+    "path": "/api/v1/messages",
+    "method": "GET",
+    "operationId": "listMessages"
+  },
+  {
+    "path": "/api/v1/messages/{messageId}",
+    "method": "GET",
+    "operationId": "getMessage"
+  },
+  {
+    "path": "/api/v1/messages/{messageId}/body",
+    "method": "GET",
+    "operationId": "getMessageBody"
+  },
+  {
+    "path": "/api/v1/messages/{messageId}/read",
+    "method": "PATCH",
+    "operationId": "setMessageRead"
+  },
+  {
+    "path": "/api/v1/messages/{messageId}/trash",
+    "method": "POST",
+    "operationId": "moveMessageToTrash"
+  },
+  {
+    "path": "/api/v1/messages/{messageId}/reply",
+    "method": "POST",
+    "operationId": "createReply"
+  },
+  {
+    "path": "/api/v1/messages/{messageId}/forward",
+    "method": "POST",
+    "operationId": "createForward"
+  },
+  {
+    "path": "/api/v1/drafts",
+    "method": "POST",
+    "operationId": "createDraft"
+  },
+  {
+    "path": "/api/v1/drafts",
+    "method": "GET",
+    "operationId": "listDrafts"
+  },
+  {
+    "path": "/api/v1/drafts/{draftId}",
+    "method": "GET",
+    "operationId": "getDraft"
+  },
+  {
+    "path": "/api/v1/drafts/{draftId}",
+    "method": "PUT",
+    "operationId": "saveDraft"
+  },
+  {
+    "path": "/api/v1/drafts/{draftId}",
+    "method": "DELETE",
+    "operationId": "deleteDraft"
+  },
+  {
+    "path": "/api/v1/drafts/{draftId}/attachments",
+    "method": "POST",
+    "operationId": "uploadDraftAttachment"
+  },
+  {
+    "path": "/api/v1/drafts/{draftId}/attachments/{fileId}",
+    "method": "DELETE",
+    "operationId": "removeDraftAttachment"
+  },
+  {
+    "path": "/api/v1/drafts/{draftId}/send",
+    "method": "POST",
+    "operationId": "sendDraft"
+  },
+  {
+    "path": "/api/v1/submissions/{submissionId}",
+    "method": "GET",
+    "operationId": "getSubmission"
+  },
+  {
+    "path": "/api/v1/submissions/{submissionId}/resolve",
+    "method": "POST",
+    "operationId": "resolveSubmission"
+  },
+  {
+    "path": "/api/v1/downloads",
+    "method": "POST",
+    "operationId": "createDownloadBatch"
+  },
+  {
+    "path": "/api/v1/downloads/{batchId}",
+    "method": "GET",
+    "operationId": "getDownloadBatch"
+  },
+  {
+    "path": "/api/v1/attachments/{attachmentId}/content",
+    "method": "GET",
+    "operationId": "getAttachmentContent"
+  },
+  {
+    "path": "/api/v1/sync",
+    "method": "POST",
+    "operationId": "requestSync"
+  },
+  {
+    "path": "/api/v1/sync/jobs",
+    "method": "GET",
+    "operationId": "listSyncJobs"
+  },
+  {
+    "path": "/api/v1/sync/jobs/{jobId}",
+    "method": "GET",
+    "operationId": "getSyncJob"
+  },
+  {
+    "path": "/api/v1/sync/jobs/{jobId}/retry",
+    "method": "POST",
+    "operationId": "retrySyncJob"
+  },
+  {
+    "path": "/api/v1/search",
+    "method": "GET",
+    "operationId": "searchMessages"
+  },
+  {
+    "path": "/api/v1/settings",
+    "method": "GET",
+    "operationId": "getSettings"
+  },
+  {
+    "path": "/api/v1/settings",
+    "method": "PATCH",
+    "operationId": "updateSettings"
+  },
+  {
+    "path": "/api/v1/settings/body-cache",
+    "method": "DELETE",
+    "operationId": "clearBodyCache"
+  },
+  {
+    "path": "/api/v1/settings/mail-data/clear",
+    "method": "POST",
+    "operationId": "clearMailData"
+  },
+  {
+    "path": "/api/v1/operations/{operationId}",
+    "method": "GET",
+    "operationId": "getOperation"
+  }
+]

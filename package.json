@@ -1,0 +1,38 @@
+{
+  "name": "mailhub-workspace",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "npm@11.19.0",
+  "engines": {
+    "node": ">=24.20.0 <25",
+    "npm": ">=11.9.0 <12"
+  },
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "typecheck": "npm run typecheck --workspace frontend",
+    "lint": "npm run lint --workspace frontend",
+    "format:check": "npm run format:check --workspace frontend",
+    "test": "npm run test --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "contracts:lint": "redocly lint contracts/openapi.yaml --config redocly.yaml",
+    "contracts:types": "openapi-typescript contracts/openapi.yaml -o frontend/src/api/generated.d.ts",
+    "contracts:check": "node tools/check-contracts.mjs",
+    "specs:check": "openspec validate --all --strict --no-interactive",
+    "test:e2e": "playwright test -c frontend/playwright.config.ts"
+  },
+  "devDependencies": {
+    "@fission-ai/openspec": "2.0.0",
+    "@playwright/test": "1.56.1",
+    "@redocly/cli": "2.78.0",
+    "openapi-typescript": "7.10.1",
+    "yaml": "2.8.3"
+  },
+  "overrides": {
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "11.0.1"
+    }
+  }
+}

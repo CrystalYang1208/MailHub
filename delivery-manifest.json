@@ -1,0 +1,1138 @@
+{
+  "package": "MailHub",
+  "format": 1,
+  "date": "2026-11-16",
+  "excludes": "private data, tool caches, dependencies, build intermediates; manifest excludes itself",
+  "files": [
+    {
+      "path": ".agents/skills/.openspec-target",
+      "sha256": "243b0dc9b847e66c440dca985e10fe0ce9e29c379b018ddd5747ba8948f84cc8",
+      "bytes": 6
+    },
+    {
+      "path": ".agents/skills/openspec-apply-change/SKILL.md",
+      "sha256": "71f084a1ea26194f62cb9ed31da8e4aa837fd57abb2b91b9cbb0c6ee8d503b79",
+      "bytes": 11433
+    },
+    {
+      "path": ".agents/skills/openspec-archive-change/SKILL.md",
+      "sha256": "3b52b3a9ff61247af45f7fdaacb7166a224e1c04081ddbc309f353ec01f741b2",
+      "bytes": 16599
+    },
+    {
+      "path": ".agents/skills/openspec-explore/SKILL.md",
+      "sha256": "e776f0d8b5e36d2e5fd8149254a95c54008942bd4336d1c67e568c67e45ddcca",
+      "bytes": 23507
+    },
+    {
+      "path": ".agents/skills/openspec-propose/SKILL.md",
+      "sha256": "5fa202ae4b4f27a67aac3e7e27e5b70fbb733651445988a6f4442bea21ec830e",
+      "bytes": 16715
+    },
+    {
+      "path": ".agents/skills/openspec-sync-specs/SKILL.md",
+      "sha256": "10616a4935e75bbbe5a4bdc81f19805e648076ba106414ffd361a5ae88f01867",
+      "bytes": 15784
+    },
+    {
+      "path": ".agents/skills/openspec-update-change/SKILL.md",
+      "sha256": "51066d453fa4300b0fab4345ed0c4734b57046fa8b170db78556cf52a0ea3916",
+      "bytes": 11578
+    },
+    {
+      "path": ".editorconfig",
+      "sha256": "e8b9cb440a8f053922690af7e40a2241287d0cc89c33cf28c3616c838836993a",
+      "bytes": 212
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "sha256": "88511b654a613ee74aaddfdab7bb38c903f4868e74e4c18bfe0715a375f76f23",
+      "bytes": 667
+    },
+    {
+      "path": ".github/workflows/engineering.yml",
+      "sha256": "d2c5e018ae00e8b89835f13e48fb1c94f140da3f69cb48f330478e8b39c0e245",
+      "bytes": 684
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "7777cf7346fb494cf81245fac26b921ddc5313163589fc7fec6f9420ea995aeb",
+      "bytes": 671
+    },
+    {
+      "path": ".npmrc",
+      "sha256": "536759977ef819ea7fe3d88ac0625573e4681c82213685edda9624c65a9e0eaa",
+      "bytes": 100
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "f2098ecdceb87ee8329d9797bb3607ba95697bd33626ac1ab0b38df804a527d5",
+      "bytes": 1452
+    },
+    {
+      "path": "DEVELOPMENT_HANDOFF.md",
+      "sha256": "c2a9298e5537e622e9b6533a3ab8befc4df806ea86d398d2b1333cc59693bcc5",
+      "bytes": 10923
+    },
+    {
+      "path": "HANDOFF_FILE_MANIFEST.json",
+      "sha256": "f1c3678f95c87682429e961bd56afe780dd6c3067096c34a451c2a39fb609401",
+      "bytes": 24226
+    },
+    {
+      "path": "HANDOFF_VALIDATION_REPORT.md",
+      "sha256": "abdd1907dbab9406e14e1ead7e468c846f9c42c9a0f4bca6ee4eb86486c3df1a",
+      "bytes": 7092
+    },
+    {
+      "path": "INTEGRATION_CHECKLIST.md",
+      "sha256": "523c08880826dcb2a6ef92a0a9151c73aee9506dd2ad7305e9b38949000e5a7d",
+      "bytes": 2850
+    },
+    {
+      "path": "MODULE_OWNERSHIP.md",
+      "sha256": "7b6b11f0a78a595e2c7b0f45dc5c78ce64b8fa26142194b1a84b0540e2343936",
+      "bytes": 7179
+    },
+    {
+      "path": "README.md",
+      "sha256": "edc45d4d606d8f01d806254f5e38e91414fb38f6ae143d7f499347ac9786cbd5",
+      "bytes": 6941
+    },
+    {
+      "path": "TEAM_A_TASKS.md",
+      "sha256": "a3d845727790d433e5bcf2980d0bd17e4402afa7bebf7bc8ae350a8f819ce2cc",
+      "bytes": 13048
+    },
+    {
+      "path": "TEAM_B_TASKS.md",
+      "sha256": "d6b5df76406156f43460f09c50ce910adbe02c565fd834aa737fe5ea8302b102",
+      "bytes": 4319
+    },
+    {
+      "path": "THIRD-PARTY-NOTICES.md",
+      "sha256": "a1aed2f9a6ffc0095704425492e76402744a8424580d62536b3a081ff253e54a",
+      "bytes": 905
+    },
+    {
+      "path": "UNASSIGNED_REQUIREMENTS.md",
+      "sha256": "abfae8da65c100d1f81b4b9583289aab1686dd7cf61be75e4fbbae4023b7e9a9",
+      "bytes": 2176
+    },
+    {
+      "path": "backend/Directory.Build.props",
+      "sha256": "bce755c5d8b1a928b5d717e868d67859f7bb749ecbb521edec842a87601e730a",
+      "bytes": 587
+    },
+    {
+      "path": "backend/Directory.Packages.props",
+      "sha256": "386bf6b951b6da2d6f86d9c444e2b4a6eb40d83eb8b554585c91b1ce5bfdb865",
+      "bytes": 638
+    },
+    {
+      "path": "backend/MailHub.slnx",
+      "sha256": "b3e5dbd677083952fdc6b634911d0098d0feba5a87dbc0bf4f7d2571f1210c5f",
+      "bytes": 439
+    },
+    {
+      "path": "backend/NuGet.Config",
+      "sha256": "c84f912e5c256d8a5c713f5b3d5123df5fd0b19fdc66692d2fb288ea7edca0a9",
+      "bytes": 184
+    },
+    {
+      "path": "backend/NuGet.Mirror.Config",
+      "sha256": "9fad0470f602c1487320af6c872fb364316fa86e5613eb8f9aa833f5ea1e93f4",
+      "bytes": 1177
+    },
+    {
+      "path": "backend/README.md",
+      "sha256": "f8a6e555ea380b29460221cf0a061ea1c4d0f6dbe76b4003cc4b6878a6610a85",
+      "bytes": 899
+    },
+    {
+      "path": "backend/src/MailHub.Application/Engineering/EngineeringContracts.cs",
+      "sha256": "63583c69442de8209f880bd2820f17eedad040477d84cc24a0a06d95d8ce9bbe",
+      "bytes": 572
+    },
+    {
+      "path": "backend/src/MailHub.Application/MailHub.Application.csproj",
+      "sha256": "282232d6e6228ebe2a159a568a644f7c1b4d6d82e23b1c7e6963bbdaea86e3f5",
+      "bytes": 141
+    },
+    {
+      "path": "backend/src/MailHub.Application/Workspace/Contracts.cs",
+      "sha256": "2dd66d396d78e02da5527c6437f10addc82e8dad8b1e5914c7a433fe1400abfc",
+      "bytes": 5712
+    },
+    {
+      "path": "backend/src/MailHub.Application/Workspace/VaultService.cs",
+      "sha256": "fde225d621d76d85d476e6e516be183301250babbfb4860504f5427cf1440595",
+      "bytes": 11513
+    },
+    {
+      "path": "backend/src/MailHub.Application/Workspace/WorkspaceService.Compose.cs",
+      "sha256": "46cd6d2add0b42c35e74607dba4d2dfeaef749291103575d2d67f2287d4c00f2",
+      "bytes": 21855
+    },
+    {
+      "path": "backend/src/MailHub.Application/Workspace/WorkspaceService.Core.cs",
+      "sha256": "12f404f16fbc2d31ec69a085eea8e3648bc92d0cc5a0321f7fe77a0d852ec95a",
+      "bytes": 22488
+    },
+    {
+      "path": "backend/src/MailHub.Application/Workspace/WorkspaceService.Mail.cs",
+      "sha256": "2f3ffd08834ce76250911fa6666fc95a8b45ef1e6cffc377525cc6532a7f1425",
+      "bytes": 26044
+    },
+    {
+      "path": "backend/src/MailHub.Application/Workspace/WorkspaceService.Sync.cs",
+      "sha256": "01e572db25409ce6f16de99af8b635baa02c3c85ba9a440a6dcea7d88b2d4aa5",
+      "bytes": 28931
+    },
+    {
+      "path": "backend/src/MailHub.Application/packages.lock.json",
+      "sha256": "909ac4b9c789afb1ab6dae5c93d326303dfa501c00c4fb2be9397498efe0fce0",
+      "bytes": 135
+    },
+    {
+      "path": "backend/src/MailHub.Domain/AssemblyMarker.cs",
+      "sha256": "4d4b72f03507d71732d0ebd79ea6f61dcccd0018fede9cc016c2eddff71c835d",
+      "bytes": 152
+    },
+    {
+      "path": "backend/src/MailHub.Domain/MailHub.Domain.csproj",
+      "sha256": "8d654c44b7bebb6b31a9f2f606927f45b5072193adc4eef8cce3f3cf3b278df3",
+      "bytes": 36
+    },
+    {
+      "path": "backend/src/MailHub.Domain/MailRules.cs",
+      "sha256": "20d37948bc7d43adaf758d3cbb4bbde2cd58e5b4efd9bc9bf9eb7602a1febccc",
+      "bytes": 1324
+    },
+    {
+      "path": "backend/src/MailHub.Domain/packages.lock.json",
+      "sha256": "2241481b7e74dcdcd600303146b730ecc12cbd8e49aa55755ef95ee499fe229a",
+      "bytes": 66
+    },
+    {
+      "path": "backend/src/MailHub.Host/HostFactory.cs",
+      "sha256": "f7dc7e06d919dfcd7e4d4d116fae00ad78c87724233ae136ccd87394e341cbd1",
+      "bytes": 11006
+    },
+    {
+      "path": "backend/src/MailHub.Host/MailHub.Host.csproj",
+      "sha256": "ec8a3ad0ac52c46fe31bcda206a7680ca8ce8ec8b1a4044d9e1ec9996a4238dc",
+      "bytes": 429
+    },
+    {
+      "path": "backend/src/MailHub.Host/ProductEndpoints.cs",
+      "sha256": "fa2ca39b38dbfff1e61ba82771d1ba6984323df287889da4e20e655bded78354",
+      "bytes": 12527
+    },
+    {
+      "path": "backend/src/MailHub.Host/Program.cs",
+      "sha256": "f151f86e5c9ba891e2f37a68134d034f35bef4c41bc307fb08b7b3171731cdec",
+      "bytes": 4888
+    },
+    {
+      "path": "backend/src/MailHub.Host/WorkspaceWorker.cs",
+      "sha256": "21b4b7dcc8b57fbe9513240f8afd7eb77c2b431454a88daf5407d18bd43252e3",
+      "bytes": 688
+    },
+    {
+      "path": "backend/src/MailHub.Host/implemented-operations.json",
+      "sha256": "9a197958235dd53047b22b013f6245e3a515547b6accced2df557fa5a4938a40",
+      "bytes": 1315
+    },
+    {
+      "path": "backend/src/MailHub.Host/packages.lock.json",
+      "sha256": "f5d0e3d68283c46142ee7b357c9a571249ea662620051ada03429d032249fe5a",
+      "bytes": 3981
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/MailHub.Infrastructure.csproj",
+      "sha256": "e8e212488135611f28b5849704e096fa2023ba58e345a343cc249ee2961d37ea",
+      "bytes": 818
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Persistence/EngineeringStore.cs",
+      "sha256": "966732d63fd69a6c109b89973fd46bbb920df041ef7847437e47b428b3f4e07f",
+      "bytes": 3561
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Persistence/MigrationRunner.cs",
+      "sha256": "2fa7cd680b694c5cfda79f2e97d36dcc8088295b37ff84fb80086c02d2f769aa",
+      "bytes": 4458
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Persistence/WorkspaceStore.cs",
+      "sha256": "0ce16b45ffb2ac34ca30745481222fb431f8781c85427deaafe87a24d855f7e1",
+      "bytes": 5975
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Protocols/GoogleOAuthProvider.cs",
+      "sha256": "c73c6b9312379978d174162d8228d39f3bc33fbafdda4ecea12f3652cb9522c4",
+      "bytes": 9479
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Protocols/LimitedMailGateway.cs",
+      "sha256": "8f42cdbfd132426a61775660534317a121462fd3ba2b8161c16be7a17b63c550",
+      "bytes": 3681
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Protocols/MailKitGateway.cs",
+      "sha256": "cf94d11df910e6d34acb5af09a00a71d9d1cabf8a08131708deae057a1d610a5",
+      "bytes": 15109
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Protocols/ProtocolAssembly.cs",
+      "sha256": "71453057f9791cf084d2015e36d6706b0559d1cae5514d1b2096a9cca4df1b9d",
+      "bytes": 397
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Protocols/SyntheticMailGateway.cs",
+      "sha256": "f64d83dc5a62ae2d380db797dfe5bc8adac999aa17a691c5717c8c356ad7b4a7",
+      "bytes": 13263
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Security/README.md",
+      "sha256": "21cb3e5e105065f99fa2adc7db025ab540e6c7a95716e34c3652197e0f2e81ea",
+      "bytes": 366
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/Security/SecretProtectors.cs",
+      "sha256": "58ce6959860f93da9c039e7b614e504ca0a7088b5f971d0625048394c428451c",
+      "bytes": 2646
+    },
+    {
+      "path": "backend/src/MailHub.Infrastructure/packages.lock.json",
+      "sha256": "3dc6e41528f3b4b5a6b4866b9f43548b1dd9ccc88fa99bc7621939d5fbaff84e",
+      "bytes": 3586
+    },
+    {
+      "path": "backend/tests/MailHub.Tests/FoundationTests.cs",
+      "sha256": "8e72bd53a67cba8ac297ff42532a9ef53dc193f1984212ab3d756f8ce5fe4c26",
+      "bytes": 5013
+    },
+    {
+      "path": "backend/tests/MailHub.Tests/MailHub.Tests.csproj",
+      "sha256": "ce22cd2692fdd4a0892d0268c5f642e2b44e4fd7744c275be30e73db05a7e9db",
+      "bytes": 524
+    },
+    {
+      "path": "backend/tests/MailHub.Tests/WorkspaceTests.cs",
+      "sha256": "594537ac41b061e46ba939a40c652560c7c6c3160e27342c7e8bf71d571b7bb9",
+      "bytes": 35647
+    },
+    {
+      "path": "backend/tests/MailHub.Tests/packages.lock.json",
+      "sha256": "3e960bf718c2cbdc8ba34d0e1c215e7183cb5996da130e8f09550a7046c7e568",
+      "bytes": 7866
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "sha256": "f636d70774c15398439fa55ee502acfd87b2557fcdf1cfdff174717b6edda5b7",
+      "bytes": 111786
+    },
+    {
+      "path": "contracts/operations.json",
+      "sha256": "e0546c572854ac334e74d4c60ce0285548bb604fa63da46dc46f5b7341dcba9c",
+      "bytes": 5479
+    },
+    {
+      "path": "database/README.md",
+      "sha256": "1ee5016b0caca257cc8d2815580b1f5e92adb73c5544a5e2c45cd23796bfed78",
+      "bytes": 1131
+    },
+    {
+      "path": "database/migrations/catalog/V0001__initial.sql",
+      "sha256": "426b03787af0a48a7f518f4c286645b04eec3e74c461ebf9c6c558cbdf74351e",
+      "bytes": 3369
+    },
+    {
+      "path": "database/migrations/catalog/V0002__validation_failures.sql",
+      "sha256": "7fb979db6db719388f34cdef4a34457900a4ed917dbe675ae0df3d7a3b6d656d",
+      "bytes": 289
+    },
+    {
+      "path": "database/migrations/profile/V0001__initial.sql",
+      "sha256": "2bda41a5ff6ae050f016790d8bb714ff8c89ac37659bbb889fe8cb50c4404d22",
+      "bytes": 19842
+    },
+    {
+      "path": "database/scripts/inspect.sql",
+      "sha256": "183c4116e74611e07938206410c77b3dee0ed9c7d516796cdc0575c6f47062fb",
+      "bytes": 335
+    },
+    {
+      "path": "docs/collaboration/CODE_REVIEW.md",
+      "sha256": "35885521ed541251818be7b8a32b18af27fe1af124772311f43a9f8c63d3ccc6",
+      "bytes": 1305
+    },
+    {
+      "path": "docs/collaboration/DEVELOPMENT_SETUP.md",
+      "sha256": "c9ec791eb0b3241450192c1aa4ab71dbd8e60509911f8289f9a417ac489b73e2",
+      "bytes": 3486
+    },
+    {
+      "path": "docs/collaboration/DEVELOPMENT_SLICES.md",
+      "sha256": "7e9cb1d48b3ce29f8c3cc24f992ca38d6c72e89b1cb6357f56311ef00596e797",
+      "bytes": 6899
+    },
+    {
+      "path": "docs/collaboration/GIT_WORKFLOW.md",
+      "sha256": "25e47e2bc8d13b5ef4ce16489180c22ac072ceb8e62be03f3fcc9e2a9c75202f",
+      "bytes": 1371
+    },
+    {
+      "path": "docs/collaboration/OPENSPEC_WORKFLOW.md",
+      "sha256": "d39a6e63de68c747162c3654a7bc924b5d970fe1241d54b12c00c9f641af360d",
+      "bytes": 2192
+    },
+    {
+      "path": "docs/collaboration/REQUIREMENT_SPEC_TRACE.md",
+      "sha256": "2df05913a1dccc46d223594d940e08ab04c32f701328a7e7ecdfd10c45d9abf2",
+      "bytes": 6480
+    },
+    {
+      "path": "docs/collaboration/STAGE4_PREFLIGHT.md",
+      "sha256": "61db0a76d8e2af59cfbba03a2d8c6302437a85ece7cf30d3fc5b852d1cff534f",
+      "bytes": 1984
+    },
+    {
+      "path": "docs/course/OpenSpec使用说明.md",
+      "sha256": "d98fb85a266fcc60b302ef047cb4b347b1e0832ac54530cff514bbcb5b796e19",
+      "bytes": 3793
+    },
+    {
+      "path": "docs/course/images/architecture.png",
+      "sha256": "1f88256424ad7c88fc7828108ccf0cd0fe8cc6e838867c9072896277a585ab83",
+      "bytes": 88525
+    },
+    {
+      "path": "docs/course/images/desktop.png",
+      "sha256": "95d58c9c8ed58877e554039f30d3ffce53374a524872924a0d11a77c8ea0c64c",
+      "bytes": 172244
+    },
+    {
+      "path": "docs/course/images/entities.png",
+      "sha256": "5f1fe5c77d2a4f142e6cfbc1b139b5523d14d7e8c7d0f08b7b9e7e3c2d5ce0c5",
+      "bytes": 86804
+    },
+    {
+      "path": "docs/course/images/mobile.png",
+      "sha256": "49cac03f87c21529959c537cbb148624bc8438e4d642fc69114566c66ab27738",
+      "bytes": 65535
+    },
+    {
+      "path": "docs/course/images/search-security.png",
+      "sha256": "a91a0f24c6ad2eef5fda8f503e6ef0263ba8eab54fc429c71d036463e0c69955",
+      "bytes": 164574
+    },
+    {
+      "path": "docs/course/verification/backend-results.csv",
+      "sha256": "50bcbe3eedd62b680fc8c9b87dd3b1691cd4a32c86ff67846f6d43ae0327b343",
+      "bytes": 3010
+    },
+    {
+      "path": "docs/course/verification/browser-results.csv",
+      "sha256": "c73e72d45c95ccf1f30ce403669a2227e8fc44c2d143cbd361233276d9757a2e",
+      "bytes": 539
+    },
+    {
+      "path": "docs/course/verification/openspec-progress.json",
+      "sha256": "530e7ebea26cc95d239d74805123ce9382fd4c05fc57c2cb4032b818b25b6895",
+      "bytes": 54
+    },
+    {
+      "path": "docs/course/verification/search-1000.json",
+      "sha256": "727983cc1d7d8321f1ea99cfbfcc059dcd4bdcab0c798b7b67bea126f740b091",
+      "bytes": 200
+    },
+    {
+      "path": "docs/course/verification/summary.json",
+      "sha256": "d2eb90a233287fbc5aaafa911c5bbff1340c3106299da457bfbfe699882827ed",
+      "bytes": 1516
+    },
+    {
+      "path": "docs/course/五分钟快速开始.md",
+      "sha256": "ff3c960609781a8ab4f957d8faa086bcc7524ccf0052aa826a82c907d710a5e5",
+      "bytes": 1266
+    },
+    {
+      "path": "docs/course/期末项目报告.docx",
+      "sha256": "5943e9c0eda6b8ad3da594c4d16ae4eb4c7383e4aeac83693f5e4ff10261601f",
+      "bytes": 387413
+    },
+    {
+      "path": "docs/course/本机验收清单.md",
+      "sha256": "c7632030c899ff58b6b3dec0cfde4361a02efeaccd5d851fa2cc5ea86c7272c2",
+      "bytes": 3315
+    },
+    {
+      "path": "docs/course/答辩演示脚本.md",
+      "sha256": "ae73a255c060c377c4865344aaeb056ff866e34fc33f5938b1a72c1ba0a28a60",
+      "bytes": 3073
+    },
+    {
+      "path": "docs/course/邮箱配置指南.md",
+      "sha256": "067906e015b6d9a94c758c63450911b13ec4d80b3a478a286f49b69033c11da3",
+      "bytes": 4269
+    },
+    {
+      "path": "docs/course/需求追踪.md",
+      "sha256": "c4193ab102374c7655b940bc614a82e9bc1c40967335bba9d77f54ba4c261943",
+      "bytes": 9654
+    },
+    {
+      "path": "docs/course/验收记录.md",
+      "sha256": "2e63573ddc10b1ecf537504b91bec8cdc70603870649f6eaa4193a5aa500dd97",
+      "bytes": 5705
+    },
+    {
+      "path": "docs/requirements/BASELINE_DECISIONS.md",
+      "sha256": "1e6ccdedeb256573ff5c2d840948cb039dd41fd606283de8a8f61d26588599b8",
+      "bytes": 1820
+    },
+    {
+      "path": "docs/technical/STAGE4_ACCEPTANCE.md",
+      "sha256": "6199c3f94f7ef9f1f614cc6eee799edf269a46a5fe7aa70bc8b638705431b0ce",
+      "bytes": 3411
+    },
+    {
+      "path": "docs/technical/STAGE4_ENGINEERING_REPORT.md",
+      "sha256": "f8029255c932314c1ab6d5e4f0f7ec2aaebd37f4a4658653e63a8813090d94b3",
+      "bytes": 9864
+    },
+    {
+      "path": "docs/technical/design/ADR/0004-local-host.md",
+      "sha256": "9a6b38864e79d068141e774ca444a7589f83ad335533f65d099497858d259807",
+      "bytes": 1736
+    },
+    {
+      "path": "docs/technical/design/ADR/0005-profile-storage.md",
+      "sha256": "5be66286789e1fd8b0e81b173416367678e3ac9406f12ab265392a01a0a45821",
+      "bytes": 1620
+    },
+    {
+      "path": "docs/technical/design/ADR/0006-password-envelope.md",
+      "sha256": "13ca9502510ae42074bc58d5466bfae0a4c5296ecb345bf5c72fed626b1ba877",
+      "bytes": 1708
+    },
+    {
+      "path": "docs/technical/design/ADR/0007-body-file-storage.md",
+      "sha256": "ea2ebb0eec562e42e7c660882a925e42f1a00af64ce441324fac26046c1f2cf9",
+      "bytes": 1680
+    },
+    {
+      "path": "docs/technical/design/ADR/0008-fts-chinese.md",
+      "sha256": "9e0b8709e608af7c3053f087927f2e1394c25ae46134ad0d71015bd9e2af665d",
+      "bytes": 1653
+    },
+    {
+      "path": "docs/technical/design/ADR/0009-sync-transactions.md",
+      "sha256": "8eb9618b7c93f6af234b415c4e018c68107ac873874c01a0727b7219ad2d09e2",
+      "bytes": 1634
+    },
+    {
+      "path": "docs/technical/design/ADR/0010-local-security.md",
+      "sha256": "532ea87181b5e2989ef1cffd5b4ce0490886de6f153d0ae266a9462e5f4470c4",
+      "bytes": 1615
+    },
+    {
+      "path": "docs/technical/design/ADR/0011-provider-adapters.md",
+      "sha256": "4c96e7e2d08f8f6e89dfea7c81c5da759c60939fcd3f46ed9def5345466eabc3",
+      "bytes": 1638
+    },
+    {
+      "path": "docs/technical/design/API_DESIGN.md",
+      "sha256": "95f56c09dcf0050bf55ba11b76f34d2f6bb3e8162c309fb3e178b71ecada093a",
+      "bytes": 10737
+    },
+    {
+      "path": "docs/technical/design/DATABASE_DESIGN.md",
+      "sha256": "ca849b875f8bc7e5579dd10f065f76dca79e29f372eff5e674ac1d9da3794b7c",
+      "bytes": 8996
+    },
+    {
+      "path": "docs/technical/design/DATA_DICTIONARY.md",
+      "sha256": "3c9b3593288c5fe2db7653e06c702a94cb62384e591a4ec343180da9f7447b6a",
+      "bytes": 32050
+    },
+    {
+      "path": "docs/technical/design/DESIGN_INPUTS.md",
+      "sha256": "f212a18be2cf25ca668183e6e2e0b61c1edca8c60e3e60e15d3e7365ff2c8d4f",
+      "bytes": 5195
+    },
+    {
+      "path": "docs/technical/design/DTO_FIELD_MAPPING.md",
+      "sha256": "ac35e8f86c8f9df4f31be59185a0b1f33c96e157f46ebaad0f4f4fc88c8806e3",
+      "bytes": 5429
+    },
+    {
+      "path": "docs/technical/design/EMAIL_INTEGRATION_DESIGN.md",
+      "sha256": "cc2c44bea1b17dea41e16085e8f629f66d8a10cb50fd3ebe60d72e065fd94b62",
+      "bytes": 10050
+    },
+    {
+      "path": "docs/technical/design/ERROR_HANDLING_DESIGN.md",
+      "sha256": "443d3667e2f820e233627cc3d3924c6be3b308b2559f094e14aa16e667317610",
+      "bytes": 6187
+    },
+    {
+      "path": "docs/technical/design/MODULE_DESIGN.md",
+      "sha256": "d494ed41e3111babb5de326ecb1ab76b3ae804e2d46f3941173e9f7ea7187827",
+      "bytes": 5216
+    },
+    {
+      "path": "docs/technical/design/REQUIREMENT_TRACEABILITY.md",
+      "sha256": "3e24faea3d5c2fd48ef1b67a1a6422c1090f71d6bce29663d702030892573948",
+      "bytes": 13955
+    },
+    {
+      "path": "docs/technical/design/SEARCH_STORAGE_DESIGN.md",
+      "sha256": "71f62034b9e270fb8c4b0afe98aa82241ba898938f09ca60f116907668e1509d",
+      "bytes": 5538
+    },
+    {
+      "path": "docs/technical/design/SECURITY_DESIGN.md",
+      "sha256": "599722c44e136a13c80334deea72dad628c387bec1e7d8fd18a732acbe9ca8c7",
+      "bytes": 9668
+    },
+    {
+      "path": "docs/technical/design/STAGE3_DESIGN_REVIEW.md",
+      "sha256": "a58400907302fa33951f0c173155fa1c7a22e0b9f1ca10fa871be7e363f14ac7",
+      "bytes": 6362
+    },
+    {
+      "path": "docs/technical/design/SYNC_ENGINE_DESIGN.md",
+      "sha256": "3d80fd5c4459e1644c2fac7ce72ea5c70955ac0667420912d37c464b59bc6a11",
+      "bytes": 9024
+    },
+    {
+      "path": "docs/technical/design/SYSTEM_ARCHITECTURE.md",
+      "sha256": "22a86ad1bfa51d7e5a7f9552e8cb8bbd8932d01c16a8867bf5bed641678a8820",
+      "bytes": 5566
+    },
+    {
+      "path": "docs/technical/design/TECHNICAL_DESIGN.md",
+      "sha256": "5be7f897480de05182dbc812f54e2b0e9b5bd59c3d47437012699212bd8eb15d",
+      "bytes": 7094
+    },
+    {
+      "path": "docs/technical/design/TEST_PLAN.md",
+      "sha256": "331e245b11b1044cd37590bc83fd6eeffe07f99668e7f55aac3d9b9896e5fee9",
+      "bytes": 17784
+    },
+    {
+      "path": "docs/technical/design/artifact-manifest.json",
+      "sha256": "7b137bbf8ca011014b693c576694805cb0e0bfac931235937531d02b4b652acc",
+      "bytes": 7115
+    },
+    {
+      "path": "docs/technical/design/baseline-input.json",
+      "sha256": "cb456e140361277be9698c678a10a0629c5392fa16e7c6708d4fd68d2181278d",
+      "bytes": 14679
+    },
+    {
+      "path": "docs/technical/design/design-checks.initial.json",
+      "sha256": "7aac3c92169a187a6b7f31da2a7a22e1b629d5e60043a33373c438a3329cf27e",
+      "bytes": 2107
+    },
+    {
+      "path": "docs/technical/design/design-checks.json",
+      "sha256": "f985aeae048048d4fc4194fbf9ca66eabc7b9ac66805f4ec416b26bc1ad3695f",
+      "bytes": 2662
+    },
+    {
+      "path": "docs/technical/design/diagrams/database_design-1.mmd",
+      "sha256": "a6866d615b22d6943b6a54b50d3fbd9fe9351b51fdcccc9d6923e91a5be05582",
+      "bytes": 1010
+    },
+    {
+      "path": "docs/technical/design/diagrams/email_integration_design-1.mmd",
+      "sha256": "0bd2481185d7d424ee9a8e01e3770c858844ffdcabe67ed5ac38b5e0931c1743",
+      "bytes": 586
+    },
+    {
+      "path": "docs/technical/design/diagrams/er.mmd",
+      "sha256": "6f2fe46dd7826d1d24dd3f063c5ee115bb8bd743309108055978cc80cb95193c",
+      "bytes": 7498
+    },
+    {
+      "path": "docs/technical/design/diagrams/search_storage_design-1.mmd",
+      "sha256": "259c206170f251ce012e0a33fe5712c3c9932d7627c7e4dd8e257f8806ceeb2c",
+      "bytes": 369
+    },
+    {
+      "path": "docs/technical/design/diagrams/security_design-1.mmd",
+      "sha256": "54f1cdf8417e4fbd0df076f382d028d7ee3b6e0032afadc68dfbdd448c652597",
+      "bytes": 376
+    },
+    {
+      "path": "docs/technical/design/diagrams/sync_engine_design-1.mmd",
+      "sha256": "9bd254b3c1f1223fac6d39eed8c5e00f611da2658bfb9f7e3326946621a0ca20",
+      "bytes": 643
+    },
+    {
+      "path": "docs/technical/design/diagrams/sync_engine_design-2.mmd",
+      "sha256": "c8eab96fe908126ddf20e7cc0c1990897101e3b97820068852dddfd64777e65d",
+      "bytes": 743
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-1.mmd",
+      "sha256": "71807734ae3c5e3fd37b003713f12e70daf266511a1bb398acc030b2ec05b82b",
+      "bytes": 765
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-2.mmd",
+      "sha256": "bc3923eabd4d91bf77e8dd599a269376a4cce65c51119b1c012121639c15106a",
+      "bytes": 470
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-3.mmd",
+      "sha256": "3deea85694b7dff3068e56f9be5b08c1eac3bd901ce94e26e5c72e02ae0be145",
+      "bytes": 507
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-4.mmd",
+      "sha256": "6284466fa38148340118f68d81ae775e0f29ccaa9889eec05c05d6156442ca7f",
+      "bytes": 636
+    },
+    {
+      "path": "docs/technical/design/diagrams/system_architecture-5.mmd",
+      "sha256": "b3845509d3e9473ec5c63e04451178b68be850eb9313330dacad89ffccb3fa64",
+      "bytes": 633
+    },
+    {
+      "path": "docs/technical/design/diagrams/technical_design-1.mmd",
+      "sha256": "755a01a133e1ccc9bb2d31ada9e84d8b8eb57a84c9393128f01e300ba0c7e0cf",
+      "bytes": 521
+    },
+    {
+      "path": "docs/technical/design/openapi.yaml",
+      "sha256": "9a5e9532b0827c73c832b61b1af9f66e83bf75d75e4c43fd7b1cdbf367db9594",
+      "bytes": 115784
+    },
+    {
+      "path": "docs/technical/design/operation-registry.json",
+      "sha256": "f2e1fd1fd5eee384ac647950bc45fc4da0b3a3cc3cb6cabd1f8e7c8b1c5133b2",
+      "bytes": 34797
+    },
+    {
+      "path": "docs/technical/design/sql/catalog.sql",
+      "sha256": "426b03787af0a48a7f518f4c286645b04eec3e74c461ebf9c6c558cbdf74351e",
+      "bytes": 3369
+    },
+    {
+      "path": "docs/technical/design/sql/profile.sql",
+      "sha256": "2bda41a5ff6ae050f016790d8bb714ff8c89ac37659bbb889fe8cb50c4404d22",
+      "bytes": 19842
+    },
+    {
+      "path": "docs/technical/design/tools/check_design.py",
+      "sha256": "29de542550dea2c23f8ee2e8dbef3eb8251a2e8e4b319e02dfa6425e32b442ed",
+      "bytes": 14485
+    },
+    {
+      "path": "docs/technical/design/tools/generate_adrs.py",
+      "sha256": "1d25907d41ebf1eaf2033ddb6273ef0ddae67439c787d3151da840a07a82b33f",
+      "bytes": 10257
+    },
+    {
+      "path": "docs/technical/design/tools/generate_api.py",
+      "sha256": "884df3e067e72b6ce9c70b85dd17ca3d2a67be56a2b22badb41c2b83006f9a1b",
+      "bytes": 29219
+    },
+    {
+      "path": "docs/technical/design/tools/generate_contracts.py",
+      "sha256": "37072e50c06d156d43df829cac9af5c1d6e39dce60978083da8cf9da06f56118",
+      "bytes": 6734
+    },
+    {
+      "path": "docs/technical/design/tools/generate_traceability.py",
+      "sha256": "0b67311edd40866194f49ddf381a3523074100ce146930621bdef70a33928ef7",
+      "bytes": 10919
+    },
+    {
+      "path": "frontend/.env.example",
+      "sha256": "5f8beedea57d3b4caa673f389691e4c820eb9f187377ff5e3c8a2793ac625e3c",
+      "bytes": 185
+    },
+    {
+      "path": "frontend/.prettierignore",
+      "sha256": "b324b961000363c71dc87698425463cbc9d5fd8cae6389df84a77240c7da5dd3",
+      "bytes": 41
+    },
+    {
+      "path": "frontend/.prettierrc.json",
+      "sha256": "566de42bb904d3de791365655384c445663e94c1d349cfaa616329c83608e7fa",
+      "bytes": 57
+    },
+    {
+      "path": "frontend/README.md",
+      "sha256": "ad8ad6ff060a594ca6f9dc5b1c9e4057d45cfb1b86bcc8c08ff33a68d51e759d",
+      "bytes": 646
+    },
+    {
+      "path": "frontend/dist/assets/index-BvAwyIVW.css",
+      "sha256": "9ba5f9bcdf19adbc5152aa09f27944c5b344f76733fee436bbabbdc3ba74d2f7",
+      "bytes": 72517
+    },
+    {
+      "path": "frontend/dist/assets/index-Dz1rn75-.js",
+      "sha256": "b72c1054a39135893a3ae2f2597b88211d1d3f87ba8c3a7e696d8ba81ccff461",
+      "bytes": 269390
+    },
+    {
+      "path": "frontend/dist/favicon.svg",
+      "sha256": "2fd741ba4b2f5d4eddebc55837b5e394f336cb0f410e8a05b9a4f3cad7d359aa",
+      "bytes": 235
+    },
+    {
+      "path": "frontend/dist/index.html",
+      "sha256": "20fddbea9c0aee3a22e70107c7b33ad7ba068019499d8e607b0e68d5f422151c",
+      "bytes": 590
+    },
+    {
+      "path": "frontend/eslint.config.mjs",
+      "sha256": "cfb365cfecb5fe13b4982e15199b866860378979520d77c9a12a337c68f20202",
+      "bytes": 682
+    },
+    {
+      "path": "frontend/index.html",
+      "sha256": "3a5b1a7d14d78b874e5466a6ee2a47d21047fb23bbcb67d894d98a26dd737416",
+      "bytes": 491
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "20a25e83436c462d1bf6bb61adf333f36b19072641b0017b65db96d73b17bb59",
+      "bytes": 1046
+    },
+    {
+      "path": "frontend/playwright.config.ts",
+      "sha256": "182fd57a846a7ece206328e1f15bd2f22d043353cbe1641ba91a768bff3fbe59",
+      "bytes": 683
+    },
+    {
+      "path": "frontend/public/favicon.svg",
+      "sha256": "2fd741ba4b2f5d4eddebc55837b5e394f336cb0f410e8a05b9a4f3cad7d359aa",
+      "bytes": 235
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "sha256": "8035a711f4aba34e62f43a9810fb2faced9aad88b56b88b72420dbafd25fbc93",
+      "bytes": 1204
+    },
+    {
+      "path": "frontend/src/api/client.ts",
+      "sha256": "7ebde32a81e1cf79cfbd7b89799635eb7d4dcbe5ba9ce16af8ca95d8bcec48ce",
+      "bytes": 2024
+    },
+    {
+      "path": "frontend/src/api/generated.d.ts",
+      "sha256": "beaee2a8f1df63957115ce502e7a6bf8c44fd4f458d48ae11520b039b833f81f",
+      "bytes": 108473
+    },
+    {
+      "path": "frontend/src/components/AccountDialog.vue",
+      "sha256": "ee15a6db683081ba9dbb397b46f24ba7cd8025c65fcafb534be9214809c0d303",
+      "bytes": 11407
+    },
+    {
+      "path": "frontend/src/components/AccountsPanel.vue",
+      "sha256": "1bb8f4d86c8350b15fb1d0586bf596daa966b1f60521402d95f4588f0d411423",
+      "bytes": 5572
+    },
+    {
+      "path": "frontend/src/components/AppIcon.vue",
+      "sha256": "5de32b6acdacd77c009db9bc40da14100f4f068b187e073a2945d94173783e59",
+      "bytes": 2339
+    },
+    {
+      "path": "frontend/src/components/AuthView.vue",
+      "sha256": "b028a6bd9e69c4c6684eebf608d06ac6c59f69f13f949bfd6dff00fb08ac82a9",
+      "bytes": 6056
+    },
+    {
+      "path": "frontend/src/components/ComposeDialog.vue",
+      "sha256": "4d6132d0204b86b211abcdf45f122bb25ee7a336d0c0384deb67ea3eb6fd0844",
+      "bytes": 13771
+    },
+    {
+      "path": "frontend/src/components/SafeBody.vue",
+      "sha256": "4048e720f59f9b26cf68649259b9f624b26bb3f262e2acbd30d000ae73ba9451",
+      "bytes": 1801
+    },
+    {
+      "path": "frontend/src/components/SettingsPanel.vue",
+      "sha256": "71b52d38555481e8e0da2976f4a3a978d89cebead43f3c7edf93f6ce08c2f859",
+      "bytes": 11108
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "sha256": "90b4d016e728c1e04b0697a9c188f1cbb2ee8a8e11fb79870cb29d5923211244",
+      "bytes": 725
+    },
+    {
+      "path": "frontend/src/styles.css",
+      "sha256": "33dec256f78f0606c3cc9d9e791deed81ee23f8df88ae13651dbce1b9591cf41",
+      "bytes": 57589
+    },
+    {
+      "path": "frontend/src/views/StatusView.vue",
+      "sha256": "7e205bcf5f76b5b69abe2abbbf1cf7b0707fed7cc991427378ee94fad3fb3e14",
+      "bytes": 2183
+    },
+    {
+      "path": "frontend/src/views/WorkspaceView.vue",
+      "sha256": "321810724882d4a945ce38d3c80e7f3a6e38e3c516edb0c655af16dc3e72eda7",
+      "bytes": 40435
+    },
+    {
+      "path": "frontend/src/workspace.ts",
+      "sha256": "19d11b7730d062f203a12c48285a03b62b676c9bcabfcafd177dfe272fe490d5",
+      "bytes": 8969
+    },
+    {
+      "path": "frontend/tests/e2e/foundation.spec.ts",
+      "sha256": "45ff1849a9b731f52e651412e0c99cdfdd0e6eeb849fa63503d49d65b1336f01",
+      "bytes": 3132
+    },
+    {
+      "path": "frontend/tests/e2e/product.spec.ts",
+      "sha256": "f82183a930bf1137c1be2460a3f26832c36dd65abcc31a2935805a147d1fceb4",
+      "bytes": 12991
+    },
+    {
+      "path": "frontend/tests/unit/client.test.ts",
+      "sha256": "92eaf3e4ef0333d889b03853ccc934e6542e0214d4e70ea12779526973d6ec79",
+      "bytes": 2018
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "sha256": "2e6823ccedd4fb80442203078331c51d49dc26683c2cf9d4bcc30113588c305d",
+      "bytes": 449
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "sha256": "9dc77f08303375d9796681d1b1aabf6132c9223546edfa492848a09d9a905320",
+      "bytes": 378
+    },
+    {
+      "path": "global.json",
+      "sha256": "90c00e3f6d115241ebc5ee2ee96f7e63f8782dcdd2a88eb67b402b7fbe41fe9e",
+      "bytes": 93
+    },
+    {
+      "path": "licenses/DOMPurify-LICENSE.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "path": "licenses/DotNET-LICENSE.txt",
+      "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+      "bytes": 1116
+    },
+    {
+      "path": "licenses/DotNET-ThirdPartyNotices.txt",
+      "sha256": "2dc8f8c5a39401e928b5784ab564eb8b3ceb99ead3df8f260e0cab7e0bbecc7a",
+      "bytes": 77436
+    },
+    {
+      "path": "licenses/ElementPlus-LICENSE.txt",
+      "sha256": "0790118bb4d66681db1d63181f72ef68e632d632f6db0373ef87cf328561af27",
+      "bytes": 1077
+    },
+    {
+      "path": "licenses/Vue-LICENSE.txt",
+      "sha256": "1bb85cc9b13b81ef41c81c51866172fc345e0503c86726a6755b796590b70175",
+      "bytes": 1091
+    },
+    {
+      "path": "openspec/changes/archive/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "openspec/changes/deliver-mailhub-course-project/.openspec.yaml",
+      "sha256": "db997d460a2d6d123d14faf903215b90f63faf4e7e2dadacfdab82c07857e113",
+      "bytes": 40
+    },
+    {
+      "path": "openspec/changes/deliver-mailhub-course-project/design.md",
+      "sha256": "b6e79515c91de273096fc26f0a5c6b0604243c1a5d466993c701029d9b88e95b",
+      "bytes": 2602
+    },
+    {
+      "path": "openspec/changes/deliver-mailhub-course-project/proposal.md",
+      "sha256": "f1c03398c26b5da793dbd7fac39ae8fcc57acd0632b5b4fea27ace6b8b0ab1e0",
+      "bytes": 1506
+    },
+    {
+      "path": "openspec/changes/deliver-mailhub-course-project/specs/account-management/spec.md",
+      "sha256": "6163f645980f735c24c3f59823cb19eda80d424366a34c23ee1edfc9e9fa9750",
+      "bytes": 1285
+    },
+    {
+      "path": "openspec/changes/deliver-mailhub-course-project/specs/demo-workspace/spec.md",
+      "sha256": "fde421b1149b17e61d3e1defcebaf64a9282e5760d2b09ae119f001470fbfb6c",
+      "bytes": 909
+    },
+    {
+      "path": "openspec/changes/deliver-mailhub-course-project/tasks.md",
+      "sha256": "50a3b1ae079f7271e7c1992972bd0cb02a9e1d573f836f510cdd5969666d6ed8",
+      "bytes": 1889
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/.openspec.yaml",
+      "sha256": "8988504bad85e6baacc178879e8183a146a7060413b79c43583e79d7e504d2ca",
+      "bytes": 57
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/design.md",
+      "sha256": "f8512a5b2b10f8c843200d49ae57b8916f6470cdb48d4610799f08c9f30ea6ef",
+      "bytes": 2040
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/proposal.md",
+      "sha256": "97017efa2e9be11c8493b69c1273390e90e18e2b40cfae6b0a2f06d9e36053be",
+      "bytes": 947
+    },
+    {
+      "path": "openspec/changes/engineering-foundation/tasks.md",
+      "sha256": "9d48e9052da89dba51b998f5f8881684f7d1221cc6e49c8ca557275eefa9c6fc",
+      "bytes": 1002
+    },
+    {
+      "path": "openspec/config.yaml",
+      "sha256": "59a36172108117fc06eee074cdfebec43eca06d7403df2089d004dde9dca087e",
+      "bytes": 1766
+    },
+    {
+      "path": "openspec/specs/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "openspec/specs/account-management/spec.md",
+      "sha256": "dad56cb0eb1eed61dce68c7406d399e42617fe99eaf5f8efbebd655255c04169",
+      "bytes": 10507
+    },
+    {
+      "path": "openspec/specs/local-storage/spec.md",
+      "sha256": "ef11ec6ed7c4f706d8678f6956c750209c0a6ea6800d0cba82d8585c913931e0",
+      "bytes": 4602
+    },
+    {
+      "path": "openspec/specs/local-users/spec.md",
+      "sha256": "35959972088bf7ca6d7f1bab247ecb029316f71ce376c69b5787e026f7020b5d",
+      "bytes": 2316
+    },
+    {
+      "path": "openspec/specs/mail-compose/spec.md",
+      "sha256": "8ed7b98d043e8805903924305c96ec82d67cd3f64e50dd9e7ea7e2bd438b895b",
+      "bytes": 5452
+    },
+    {
+      "path": "openspec/specs/mail-reading/spec.md",
+      "sha256": "b7807c26cda21b4c42737fb33ab500cae1e5333af239679ce5d68398a1a2c4ff",
+      "bytes": 10178
+    },
+    {
+      "path": "openspec/specs/mail-search/spec.md",
+      "sha256": "4028f9aebc7548f666a6c6440b26b3c60188cf77f9a903a3f2b3559205e81e7b",
+      "bytes": 3106
+    },
+    {
+      "path": "openspec/specs/mail-sync/spec.md",
+      "sha256": "30f29b11f2f9a665e01c02369565deeab205bf57af904541c08fa571dc285c96",
+      "bytes": 10036
+    },
+    {
+      "path": "openspec/specs/security/spec.md",
+      "sha256": "e61acf31e169fc3fec91677e7072fa200030dc4a2e1aab04d3daad16710b4827",
+      "bytes": 3202
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "f94a9dd917def1edd8819e386e29fc7ed59eb525265bf0221c9c48fc0e6369f8",
+      "bytes": 176555
+    },
+    {
+      "path": "package.json",
+      "sha256": "f7572e26bb5df55cb76e865a44af70cdeb7eb5715f72d548f981f21732c6aaec",
+      "bytes": 1205
+    },
+    {
+      "path": "redocly.yaml",
+      "sha256": "865be38348c8f5493289fdfc19a351c6337c684a9c423968027293aa402de1e8",
+      "bytes": 189
+    },
+    {
+      "path": "tools/Environment.ps1",
+      "sha256": "1e6b6c5e6e19b17a8d59faafcff080754216303cc88b1d8c35af1ffa65069b04",
+      "bytes": 1107
+    },
+    {
+      "path": "tools/Publish-Windows.ps1",
+      "sha256": "f57003fde406df89ec19c259daabb96f2c99c51e3b98a3f537a376e9034054d4",
+      "bytes": 924
+    },
+    {
+      "path": "tools/Start-Engineering.ps1",
+      "sha256": "b7555f87e945c7500a8916e60875c29532623cb531475d257cf0da762c7e5300",
+      "bytes": 1687
+    },
+    {
+      "path": "tools/Start-MailHub.ps1",
+      "sha256": "be4d8886052b0416439ac0f69e5ceb55b6e6351876aff5a10053ea3f0ea9af72",
+      "bytes": 2119
+    },
+    {
+      "path": "tools/Stop-Engineering.ps1",
+      "sha256": "8fdee80ac7805927179267d6be0cbef2d7a72cca2ce8fc7433dea6cd56294c65",
+      "bytes": 736
+    },
+    {
+      "path": "tools/Stop-MailHub.ps1",
+      "sha256": "467f3099d9c427cdfb4adb3c65618e0e9db3d38e20d099735008a6b4176468c3",
+      "bytes": 648
+    },
+    {
+      "path": "tools/Test-Product.ps1",
+      "sha256": "aeed1478ef9267a1355d4f03fe9d8a6064fb962eccf3d0eadf4a8e17bb7169b4",
+      "bytes": 959
+    },
+    {
+      "path": "tools/Test-Quality.ps1",
+      "sha256": "80cf9b0876cce2236bcd3f59a25c0a22e0be4623755fad6a7f356ac07a098601",
+      "bytes": 2721
+    },
+    {
+      "path": "tools/build-specs.py",
+      "sha256": "68a2ff6ba48bdf85420f46836c417a797ebaad9eb71e26a208421da3e822a8c9",
+      "bytes": 9874
+    },
+    {
+      "path": "tools/check-contracts.mjs",
+      "sha256": "9ea0cd677027a5e124903ee749b1f38a0ac11ca344a15a5e262c00d0e5567b4d",
+      "bytes": 3839
+    },
+    {
+      "path": "tools/prepare-handoff.py",
+      "sha256": "1ba44d00c4b01d285636b5e07d7d981ccd23abe204d0688270fbe42278fa1295",
+      "bytes": 4683
+    },
+    {
+      "path": "运行正式版.cmd",
+      "sha256": "9c4d555098900bad335185f0b5777bcbe97af50741def4f09edd32309ad33685",
+      "bytes": 283
+    },
+    {
+      "path": "运行演示.cmd",
+      "sha256": "3f73f3b21fc3746898cd14e67592f64284590e2f7a46b2a1fb31e418ce4982d6",
+      "bytes": 296
+    }
+  ]
+}

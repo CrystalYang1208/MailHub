@@ -1,0 +1,11 @@
+flowchart LR
+ P[用户密码] --> KDF[独立盐 密码KDF]
+ KDF --> V[密码验证值]
+ KDF --> KEK[KEK]
+ UMK[随机用户主密钥] --> Wrap[AES-GCM封套]
+ KEK --> Wrap
+ Wrap --> DP1[DPAPI CurrentUser]
+ DP1 --> Catalog[UserKeyEnvelope]
+ UMK --> Cred[AES-GCM绑定用户与账号的凭据]
+ Cred --> DP2[DPAPI CurrentUser]
+ DP2 --> DB[AuthCredential.dpapi_cipher]

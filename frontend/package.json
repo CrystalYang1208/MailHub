@@ -1,0 +1,36 @@
+{
+  "name": "@mailhub/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "lint": "eslint src tests vite.config.ts playwright.config.ts",
+    "format:check": "prettier --check src tests *.ts *.json *.html *.mjs",
+    "format": "prettier --write src tests *.ts *.json *.html *.mjs",
+    "test": "vitest run tests/unit",
+    "build": "vue-tsc --noEmit -p tsconfig.json && vite build"
+  },
+  "dependencies": {
+    "dompurify": "3.4.18",
+    "element-plus": "2.11.8",
+    "vue": "3.5.45",
+    "vue-router": "4.5.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/node": "24.10.1",
+    "@vitejs/plugin-vue": "6.0.2",
+    "eslint": "9.39.5",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-vue": "10.5.1",
+    "globals": "14.0.0",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.4",
+    "vite": "7.3.8",
+    "vitest": "4.1.12",
+    "vue-tsc": "3.1.4"
+  }
+}

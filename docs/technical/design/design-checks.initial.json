@@ -1,0 +1,71 @@
+{
+  "utc": "2026-11-15T14:57:56.637849+00:00",
+  "scope": "Stage-three design checks only; not product functional acceptance; no prior stage benchmarks rerun",
+  "results": [
+    {
+      "check": "baseline-source-priorities",
+      "status": "PASS",
+      "details": {
+        "fr": 35,
+        "must": 24,
+        "should": 11,
+        "nfr": 14,
+        "br": 10,
+        "originalAC": 12,
+        "originalCR": 7,
+        "sourceUnchanged": true
+      }
+    },
+    {
+      "check": "openapi-local-refs-and-schemas",
+      "status": "PASS",
+      "details": {
+        "operations": 50,
+        "schemas": 43,
+        "resolvedLocalReferences": 44,
+        "pathParametersValid": true,
+        "scope": "OAS structure and JSON Schema checks; not third-party full OAS linter or running API"
+      }
+    },
+    {
+      "check": "requirement-traceability",
+      "status": "PASS",
+      "details": {
+        "all35FRToAPIAndTest": true,
+        "original12ACVerbatim": true,
+        "all14NFRAnd10BRMapped": true,
+        "cr01to08Present": true
+      }
+    },
+    {
+      "check": "new-sql-contract-sanity",
+      "status": "PASS",
+      "details": {
+        "tablesIncludingFTSInternal": {
+          "catalog": 5,
+          "profile": 28
+        },
+        "fourSlotAndUniqueAddressConstraints": true,
+        "newDDLQuotaTriggerAndFTSCascade": true,
+        "scope": "Tiny in-memory SQL design sanity; no pressure/performance/UIDVALIDITY/mailbox tests; WAL runtime not tested here",
+        "checkerSQLite": "3.45.3"
+      }
+    },
+    {
+      "check": "dto-to-sql-fields",
+      "status": "PASS",
+      "details": {
+        "mappedCoreTables": 8,
+        "coreMappingColumnsExist": true,
+        "scope": "Explicit DTO mapping column check; business semantics additionally reviewed in docs"
+      }
+    },
+    {
+      "check": "deliverables-links-and-diagram-sources",
+      "status": "FAIL",
+      "errorType": "AssertionError",
+      "detail": "Broken link STAGE3_DESIGN_REVIEW.md: design-checks.json"
+    }
+  ],
+  "status": "FAIL"
+}

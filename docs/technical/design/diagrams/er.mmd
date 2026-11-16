@@ -1,0 +1,320 @@
+erDiagram
+  AccountReservation {
+    text account_id PK
+    text user_id FK
+    blob address_fingerprint
+    text state
+    integer created_at_ms
+    integer expires_at_ms
+  }
+  LocalUser ||--o{ AccountReservation : "user_id"
+  CatalogOperation {
+    text operation_id PK
+    text user_id FK
+    text account_id
+    text kind
+    text state
+    integer updated_at_ms
+  }
+  LocalUser ||--o{ CatalogOperation : "user_id"
+  CatalogSecret {
+    integer singleton PK
+    blob dpapi_hmac_key
+  }
+  LocalUser {
+    text user_id PK
+    integer slot
+    text display_name
+    text normalized_name
+    blob password_salt
+    blob password_verifier
+    text password_kdf
+    integer password_iterations
+    integer auth_version
+    integer failed_logins
+    integer locked_until_ms
+    text state
+    integer created_at_ms
+    integer updated_at_ms
+  }
+  UserKeyEnvelope {
+    text user_id PK
+    text key_id
+    integer envelope_version
+    blob kek_salt
+    integer kek_iterations
+    blob dpapi_wrapped_envelope
+    integer revision
+    integer updated_at_ms
+  }
+  LocalUser ||--o{ UserKeyEnvelope : "user_id"
+  Attachment {
+    text attachment_id PK
+    integer message_row_id FK
+    text part_spec
+    text file_name
+    text mime_type
+    integer declared_bytes
+    text file_id FK
+  }
+  FileObject ||--o{ Attachment : "file_id"
+  Message ||--o{ Attachment : "message_row_id"
+  AuthCredential {
+    text credential_id PK
+    text account_id FK
+    text key_id
+    integer format_version
+    blob dpapi_cipher
+    integer expires_at_ms
+    integer revision
+    integer updated_at_ms
+  }
+  MailAccount ||--o{ AuthCredential : "account_id"
+  CacheQuota {
+    integer singleton PK
+    integer limit_bytes
+    integer used_bytes
+  }
+  CleanupOperation {
+    text operation_id PK
+    text kind
+    text target_id
+    text payload_json
+    text state
+    integer updated_at_ms
+  }
+  DownloadBatch {
+    text batch_id PK
+    integer limit_bytes
+    integer received_bytes
+    text state
+    integer created_at_ms
+  }
+  DownloadItem {
+    text batch_id PK
+    text attachment_id PK
+    text state
+    text last_error_code
+  }
+  Attachment ||--o{ DownloadItem : "attachment_id"
+  DownloadBatch ||--o{ DownloadItem : "batch_id"
+  Draft {
+    text draft_id PK
+    text account_id FK
+    text mode
+    text source_message_id
+    text source_headers_json
+    text to_json
+    text cc_json
+    text bcc_json
+    text subject
+    text body_text
+    text body_html
+    text state
+    integer version
+    text last_error_code
+    integer created_at_ms
+    integer updated_at_ms
+  }
+  MailAccount ||--o{ Draft : "account_id"
+  DraftAttachment {
+    text draft_id PK
+    text file_id PK
+    text file_name
+    text mime_type
+  }
+  FileObject ||--o{ DraftAttachment : "file_id"
+  Draft ||--o{ DraftAttachment : "draft_id"
+  FileObject {
+    text file_id PK
+    text purpose
+    text relative_path
+    text state
+    integer byte_size
+    blob sha256
+    integer created_at_ms
+  }
+  Folder {
+    text folder_id PK
+    text account_id FK
+    text remote_name
+    text role
+    integer uid_validity
+    integer last_uid
+    integer epoch
+    text highest_modseq
+    text state
+    integer unread_count
+    integer reconciled_at_ms
+  }
+  MailAccount ||--o{ Folder : "account_id"
+  FolderScan {
+    text scan_id PK
+    text folder_id FK
+    integer expected_epoch
+    integer upper_uid
+    integer completed
+    integer created_at_ms
+  }
+  Folder ||--o{ FolderScan : "folder_id"
+  MailAccount {
+    text account_id PK
+    text owner_id FK
+    text address
+    text provider_key
+    text auth_type
+    text imap_host
+    integer imap_port
+    text imap_security
+    text smtp_host
+    integer smtp_port
+    text smtp_security
+    integer enabled
+    text status
+    integer auth_failure_count
+    integer auth_cooldown_until_ms
+    integer work_epoch
+    text last_error_code
+    integer created_at_ms
+    integer updated_at_ms
+  }
+  Profile ||--o{ MailAccount : "owner_id"
+  MailMutation {
+    text mutation_id PK
+    text job_id FK
+    integer message_row_id FK
+    integer source_uid_validity
+    integer source_uid
+    text kind
+    integer desired_read
+    text target_folder_id FK
+    integer target_uid
+    text state
+  }
+  Folder ||--o{ MailMutation : "target_folder_id"
+  Message ||--o{ MailMutation : "message_row_id"
+  SyncJob ||--o{ MailMutation : "job_id"
+  Message {
+    integer message_row_id PK
+    text message_id
+    text account_id FK
+    text folder_id FK
+    integer uid_validity
+    integer uid
+    text subject
+    text sender_json
+    text reply_to_json
+    text recipients_json
+    text rfc_message_id
+    text in_reply_to
+    text references_json
+    integer internal_date_ms
+    integer sent_at_ms
+    integer is_read
+    text flags_json
+    integer size_bytes
+    integer has_attachments
+    text body_index_state
+    text server_state
+    integer version
+  }
+  Folder ||--o{ Message : "folder_id"
+  MessageBody {
+    integer message_row_id PK
+    blob text_utf8
+    blob html_utf8
+    integer byte_size
+    integer accessed_at_ms
+  }
+  Message ||--o{ MessageBody : "message_row_id"
+  MessageSearch {
+     subject
+     sender
+     body
+  }
+  OutboxRecipient {
+    text submission_id PK
+    text address PK
+    text kind
+    text state
+    integer smtp_status
+  }
+  OutboxSubmission ||--o{ OutboxRecipient : "submission_id"
+  OutboxSubmission {
+    text submission_id PK
+    text draft_id FK
+    integer draft_version
+    text idempotency_key
+    blob request_hash
+    text mime_file_id FK
+    text client_message_id
+    text observed_message_id
+    text state
+    text last_error_code
+    integer smtp_status
+    text resolution
+    integer resolved_at_ms
+    integer created_at_ms
+    integer updated_at_ms
+  }
+  FileObject ||--o{ OutboxSubmission : "mime_file_id"
+  Draft ||--o{ OutboxSubmission : "draft_id"
+  Profile {
+    text user_id PK
+    integer format_version
+    integer created_at_ms
+  }
+  ProfileSettings {
+    integer singleton PK
+    integer sync_interval_minutes
+    integer auto_sync_paused
+    blob google_oauth_client_dpapi
+    integer updated_at_ms
+  }
+  ScanUid {
+    text scan_id PK
+    integer uid PK
+  }
+  FolderScan ||--o{ ScanUid : "scan_id"
+  SearchDocument {
+    integer message_row_id PK
+    text subject
+    text sender
+    text body
+    integer updated_at_ms
+  }
+  Message ||--o{ SearchDocument : "message_row_id"
+  SyncCheckpoint {
+    text job_id PK
+    integer expected_uid_validity
+    integer expected_folder_epoch
+    integer lower_uid
+    integer upper_uid
+    integer next_uid
+    integer cutoff_at_ms
+  }
+  SyncJob ||--o{ SyncCheckpoint : "job_id"
+  SyncJob {
+    text job_id PK
+    text account_id FK
+    text folder_id FK
+    integer message_row_id FK
+    text kind
+    text state
+    text coalesce_key
+    text payload_json
+    integer attempt
+    integer next_run_at_ms
+    text lease_owner
+    integer lease_expires_at_ms
+    integer expected_account_epoch
+    integer progress_done
+    integer progress_total
+    text last_error_code
+    integer version
+    integer created_at_ms
+    integer updated_at_ms
+  }
+  Message ||--o{ SyncJob : "message_row_id"
+  Folder ||--o{ SyncJob : "folder_id"
+  MailAccount ||--o{ SyncJob : "account_id"

@@ -1,0 +1,16 @@
+flowchart TD
+ A[认证会话得到UserContext] --> B[查询本用户邮件头]
+ B --> C[先呈现缓存列表]
+ A --> D[同步调度取得账号连接租约]
+ D --> E[IMAP UID与邮件头 网络阶段]
+ E --> F[短事务 头 SearchDocument 游标 Job]
+ F --> G[发布不含正文的进度事件]
+ C --> H[阅读正文]
+ H --> I{正文缓存命中}
+ I -->|是| J[脱离数据库快照的正文缓冲]
+ I -->|否且在线| K[BODY.PEEK 拉取 MIME解码]
+ K --> L[同事务LRU与缓存写入 / 索引更新]
+ L --> J
+ J --> M[DOMPurify清洗 sandbox空权限 CSP]
+ D --> N[后台低优先级全文正文建索引]
+ N --> F

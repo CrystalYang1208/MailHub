@@ -1,0 +1,4156 @@
+openapi: 3.1.1
+info:
+  title: MailHub 本地桥接API设计合同
+  version: 1.0.0-design
+  description: 设计草案；127.0.0.1动态端口、同源、全中文错误。除bootstrap/登录前用户接口外，进程令牌和用户会话必须同时验证。不是现有原型API实现。
+servers:
+- url: http://127.0.0.1:{port}/api/v1
+  variables:
+    port:
+      default: '49152'
+      description: 实际启动动态端口；不是固定生产端口
+security:
+- BridgeToken: []
+  UserSession: []
+paths:
+  /bridge/bootstrap:
+    post:
+      operationId: bootstrapBridge
+      tags:
+      - Security
+      summary: 一次性启动引导码换进程令牌
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes:
+      - BOOTSTRAP_EXPIRED
+      - BOOTSTRAP_REPLAY
+      responses:
+        '200':
+          description: 一次性启动引导码换进程令牌
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/BridgeAccess'
+                  error:
+                    type: 'null'
+                  requestId: &id001
+                    type: string
+                    format: uuid
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BridgeBootstrap'
+  /users:
+    get:
+      operationId: listUsers
+      tags:
+      - Settings
+      summary: 列出最多四个本地用户名称，不返回密钥/账号
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 列出最多四个本地用户名称，不返回密钥/账号
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      security:
+      - BridgeToken: []
+    post:
+      operationId: registerUser
+      tags:
+      - Settings
+      summary: 注册本地用户并初始化密钥与用户库
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes:
+      - USER_LIMIT
+      - NAME_EXISTS
+      responses:
+        '201':
+          description: 注册本地用户并初始化密钥与用户库
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/User'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      security:
+      - BridgeToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+  /sessions:
+    post:
+      operationId: login
+      tags:
+      - Security
+      summary: 密码认证并解封主密钥
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes:
+      - LOGIN_INVALID
+      - LOGIN_COOLDOWN
+      - KEY_UNAVAILABLE
+      responses:
+        '200':
+          description: 密码认证并解封主密钥
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Session'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      security:
+      - BridgeToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+  /sessions/current:
+    get:
+      operationId: getCurrentSession
+      tags:
+      - Security
+      summary: 当前用户信息
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 当前用户信息
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/User'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+    delete:
+      operationId: logout
+      tags:
+      - Security
+      summary: 撤销会话、取消任务并清密钥
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 撤销会话、取消任务并清密钥
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Ack'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+  /sessions/switch:
+    post:
+      operationId: switchUser
+      tags:
+      - Security
+      summary: 先退出旧身份再验证目标密码；失败保持锁定
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes:
+      - LOGIN_INVALID
+      - LOGIN_COOLDOWN
+      responses:
+        '200':
+          description: 先退出旧身份再验证目标密码；失败保持锁定
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Session'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+  /users/current/password:
+    put:
+      operationId: changePassword
+      tags:
+      - Security
+      summary: 原子更换验证值和密钥封套并注销全部会话
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes:
+      - PASSWORD_INVALID
+      - KEY_UNAVAILABLE
+      responses:
+        '200':
+          description: 原子更换验证值和密钥封套并注销全部会话
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Ack'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordChange'
+  /users/current:
+    delete:
+      operationId: deleteUser
+      tags:
+      - Settings
+      summary: 本人再次密码确认后清本地数据，非远程删信
+      x-requirements:
+      - FR-F01
+      x-priority: Must
+      x-error-codes:
+      - LOGIN_INVALID
+      responses:
+        '202':
+          description: 本人再次密码确认后清本地数据，非远程删信
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Operation'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+  /providers:
+    get:
+      operationId: listProviders
+      tags:
+      - Account
+      summary: 模板与三步中文授权指引
+      x-requirements:
+      - FR-A01
+      - FR-A02
+      - FR-A03
+      - FR-A04
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 模板与三步中文授权指引
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Provider'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+  /settings/oauth-client:
+    put:
+      operationId: importOAuthClient
+      tags:
+      - Account
+      summary: 导入本用户Google桌面客户端配置
+      x-requirements:
+      - FR-A03
+      x-priority: Must
+      x-error-codes:
+      - OAUTH_CLIENT_INVALID
+      responses:
+        '200':
+          description: 导入本用户Google桌面客户端配置
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Ack'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthClientImport'
+  /oauth/flows:
+    post:
+      operationId: startOAuth
+      tags:
+      - Account
+      summary: 创建桌面PKCE授权流程
+      x-requirements:
+      - FR-A03
+      - FR-A07
+      x-priority: Must
+      x-error-codes:
+      - OAUTH_CLIENT_MISSING
+      responses:
+        '201':
+          description: 创建桌面PKCE授权流程
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/OAuthFlow'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthStart'
+  /oauth/flows/{flowId}:
+    get:
+      operationId: getOAuthFlow
+      tags:
+      - Account
+      summary: 查询授权状态，不返回邮箱令牌
+      x-requirements:
+      - FR-A03
+      - FR-A07
+      x-priority: Must
+      x-error-codes:
+      - OAUTH_FLOW_EXPIRED
+      responses:
+        '200':
+          description: 查询授权状态，不返回邮箱令牌
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/OAuthFlow'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: flowId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /accounts/validations:
+    post:
+      operationId: validateAccount
+      tags:
+      - Account
+      summary: 校验配置、授权及文件夹，返回短期绑定验证结果
+      x-requirements:
+      - FR-A01
+      - FR-A02
+      - FR-A03
+      - FR-A04
+      - FR-A05
+      - FR-A06
+      x-priority: Must
+      x-error-codes:
+      - AUTH_FAILED
+      - IMAP_DISABLED
+      - SERVER_CONFIG
+      - NETWORK_UNREACHABLE
+      - AUTH_COOLDOWN
+      - TLS_FAILED
+      - PROVIDER_REJECTED
+      responses:
+        '200':
+          description: 校验配置、授权及文件夹，返回短期绑定验证结果
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/AccountValidation'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountValidationRequest'
+  /accounts:
+    post:
+      operationId: addAccount
+      tags:
+      - Account
+      summary: 消费验证结果并原子保存账号密文
+      x-requirements:
+      - FR-A01
+      - FR-A06
+      x-priority: Must
+      x-error-codes:
+      - ACCOUNT_EXISTS
+      - VALIDATION_EXPIRED
+      responses:
+        '201':
+          description: 消费验证结果并原子保存账号密文
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Account'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountCreate'
+    get:
+      operationId: listAccounts
+      tags:
+      - Account
+      summary: 本用户账号列表
+      x-requirements:
+      - FR-A02
+      - FR-C02
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 本用户账号列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Account'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      tags:
+      - Account
+      summary: 账号详情，绝不返回凭据
+      x-requirements:
+      - FR-A06
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 账号详情，绝不返回凭据
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Account'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+    patch:
+      operationId: setAccountEnabled
+      tags:
+      - Account
+      summary: 仅修改启停，不恢复已取消显示名/同步范围功能
+      x-requirements:
+      - FR-A09
+      x-priority: Should
+      x-error-codes:
+      - ACCOUNT_BUSY
+      responses:
+        '200':
+          description: 仅修改启停，不恢复已取消显示名/同步范围功能
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Account'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled: &id002
+                  type: boolean
+              required:
+              - enabled
+              additionalProperties: false
+    delete:
+      operationId: removeAccount
+      tags:
+      - Account
+      summary: 取消任务并清账号、凭据、邮件、索引和关联文件
+      x-requirements:
+      - FR-A08
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '202':
+          description: 取消任务并清账号、凭据、邮件、索引和关联文件
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Operation'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /accounts/{accountId}/reauthorize:
+    post:
+      operationId: reauthorizeAccount
+      tags:
+      - Account
+      summary: 验证并替换凭据，保留账号及邮件
+      x-requirements:
+      - FR-A07
+      x-priority: Must
+      x-error-codes:
+      - AUTH_FAILED
+      - AUTH_COOLDOWN
+      responses:
+        '200':
+          description: 验证并替换凭据，保留账号及邮件
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Account'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialInput'
+  /accounts/{accountId}/folders:
+    get:
+      operationId: listFolders
+      tags:
+      - Mail
+      summary: 文件夹及服务器确认未读数
+      x-requirements:
+      - FR-C07
+      - FR-C08
+      x-priority: Should
+      x-error-codes: []
+      responses:
+        '200':
+          description: 文件夹及服务器确认未读数
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Folder'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /messages:
+    get:
+      operationId: listMessages
+      tags:
+      - Mail
+      summary: 统一收件箱默认聚合inbox，按收信时间倒序
+      x-requirements:
+      - FR-C01
+      - FR-C02
+      - FR-C07
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 统一收件箱默认聚合inbox，按收信时间倒序
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/MessageSummary'
+                      nextCursor:
+                        type:
+                        - string
+                        - 'null'
+                      hasMore: *id002
+                    required:
+                    - items
+                    - nextCursor
+                    - hasMore
+                    additionalProperties: false
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - &id004
+        name: accountId
+        in: query
+        required: false
+        schema: *id001
+        description: 当前用户账号
+      - &id005
+        name: folderId
+        in: query
+        required: false
+        schema: *id001
+        description: 文件夹必须属于所选账号
+      - &id006
+        name: from
+        in: query
+        required: false
+        schema: &id003
+          type: string
+          format: date-time
+          description: RFC3339 UTC，必须以Z结尾
+        description: 收信时间下界（含）
+      - &id007
+        name: to
+        in: query
+        required: false
+        schema: *id003
+        description: 收信时间上界（不含）
+      - &id008
+        name: isRead
+        in: query
+        required: false
+        schema: *id002
+        description: 服务端已确认的已读值
+      - &id009
+        name: hasAttachments
+        in: query
+        required: false
+        schema: *id002
+        description: 附件过滤
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+        description: 每页条数
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 不透明分页游标
+  /messages/{messageId}:
+    get:
+      operationId: getMessage
+      tags:
+      - Mail
+      summary: 头部详情和附件元数据
+      x-requirements:
+      - FR-C03
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 头部详情和附件元数据
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/MessageDetail'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /messages/{messageId}/body:
+    get:
+      operationId: getMessageBody
+      tags:
+      - Mail
+      summary: 缓存读取或入队BODY.PEEK，阅读不自动置已读
+      x-requirements:
+      - FR-C03
+      x-priority: Must
+      x-error-codes:
+      - STALE_GENERATION
+      responses:
+        '200':
+          description: 缓存读取或入队BODY.PEEK，阅读不自动置已读
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Body'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /messages/{messageId}/read:
+    patch:
+      operationId: setMessageRead
+      tags:
+      - Mail
+      summary: 排队修改服务器FLAGS，确认前保持服务器缓存值
+      x-requirements:
+      - FR-C05
+      x-priority: Must
+      x-error-codes:
+      - AUTH_REQUIRED
+      - ACCOUNT_DISABLED
+      responses:
+        '202':
+          description: 排队修改服务器FLAGS，确认前保持服务器缓存值
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Job'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadMutation'
+  /messages/{messageId}/trash:
+    post:
+      operationId: moveMessageToTrash
+      tags:
+      - Mail
+      summary: 只移服务端垃圾箱，禁止永久删除
+      x-requirements:
+      - FR-C06
+      x-priority: Must
+      x-error-codes:
+      - TRASH_UNSUPPORTED
+      - ALREADY_IN_TRASH
+      - STALE_GENERATION
+      responses:
+        '202':
+          description: 只移服务端垃圾箱，禁止永久删除
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Job'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /messages/{messageId}/reply:
+    post:
+      operationId: createReply
+      tags:
+      - Compose
+      summary: 按真实收到原邮件头派生回复草稿
+      x-requirements:
+      - FR-D02
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '201':
+          description: 按真实收到原邮件头派生回复草稿
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Draft'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeriveDraft'
+  /messages/{messageId}/forward:
+    post:
+      operationId: createForward
+      tags:
+      - Compose
+      summary: 派生独立转发草稿并携带引用，不合并会话
+      x-requirements:
+      - FR-D02
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '201':
+          description: 派生独立转发草稿并携带引用，不合并会话
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Draft'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: messageId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeriveDraft'
+  /drafts:
+    post:
+      operationId: createDraft
+      tags:
+      - Compose
+      summary: 创建独立本地草稿
+      x-requirements:
+      - FR-D01
+      - FR-D03
+      - FR-D04
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '201':
+          description: 创建独立本地草稿
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Draft'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DraftCreate'
+    get:
+      operationId: listDrafts
+      tags:
+      - Compose
+      summary: 当前用户草稿列表
+      x-requirements:
+      - FR-D03
+      - FR-D04
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 当前用户草稿列表
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Draft'
+                      nextCursor:
+                        type:
+                        - string
+                        - 'null'
+                      hasMore: *id002
+                    required:
+                    - items
+                    - nextCursor
+                    - hasMore
+                    additionalProperties: false
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+        description: 每页条数
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 不透明分页游标
+  /drafts/{draftId}:
+    get:
+      operationId: getDraft
+      tags:
+      - Compose
+      summary: 恢复完整草稿
+      x-requirements:
+      - FR-D03
+      - FR-D04
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 恢复完整草稿
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Draft'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: 草稿version对应强ETag，修改时If-Match
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+    put:
+      operationId: saveDraft
+      tags:
+      - Compose
+      summary: 按版本保存草稿
+      x-requirements:
+      - FR-D03
+      - FR-D04
+      x-priority: Must
+      x-error-codes:
+      - VERSION_CONFLICT
+      - DRAFT_BUSY
+      responses:
+        '200':
+          description: 按版本保存草稿
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Draft'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+          headers:
+            ETag:
+              schema:
+                type: string
+              description: 草稿version对应强ETag，修改时If-Match
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      - name: If-Match
+        in: header
+        required: true
+        schema:
+          type: string
+        description: 草稿ETag，例双引号内版本数字
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DraftUpdate'
+    delete:
+      operationId: deleteDraft
+      tags:
+      - Compose
+      summary: 删除本人草稿；unknown提交必须先对账
+      x-requirements:
+      - FR-D03
+      x-priority: Should
+      x-error-codes:
+      - DRAFT_BUSY
+      - VERSION_CONFLICT
+      responses:
+        '200':
+          description: 删除本人草稿；unknown提交必须先对账
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Ack'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      - name: If-Match
+        in: header
+        required: true
+        schema:
+          type: string
+        description: 当前草稿版本
+  /drafts/{draftId}/attachments:
+    post:
+      operationId: uploadDraftAttachment
+      tags:
+      - Compose
+      summary: 上传并持久化草稿附件；发送总解码附件<=25MB
+      x-requirements:
+      - FR-D05
+      x-priority: Should
+      x-error-codes:
+      - ATTACHMENT_TOO_LARGE
+      - VERSION_CONFLICT
+      - DRAFT_BUSY
+      responses:
+        '201':
+          description: 上传并持久化草稿附件；发送总解码附件<=25MB
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/DraftFile'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      - name: If-Match
+        in: header
+        required: true
+        schema:
+          type: string
+        description: 当前草稿版本
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+              additionalProperties: false
+  /drafts/{draftId}/attachments/{fileId}:
+    delete:
+      operationId: removeDraftAttachment
+      tags:
+      - Compose
+      summary: 解绑草稿附件并排队清理无引用对象
+      x-requirements:
+      - FR-D05
+      x-priority: Should
+      x-error-codes:
+      - DRAFT_BUSY
+      - VERSION_CONFLICT
+      responses:
+        '200':
+          description: 解绑草稿附件并排队清理无引用对象
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Ack'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      - name: fileId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      - name: If-Match
+        in: header
+        required: true
+        schema:
+          type: string
+        description: 当前草稿版本
+  /drafts/{draftId}/send:
+    post:
+      operationId: sendDraft
+      tags:
+      - Compose
+      summary: 冻结草稿并建立幂等发送提交
+      x-requirements:
+      - FR-D01
+      - FR-D02
+      - FR-D04
+      - FR-D05
+      x-priority: Must
+      x-error-codes:
+      - VERSION_CONFLICT
+      - IDEMPOTENCY_CONFLICT
+      - DRAFT_BUSY
+      - ATTACHMENT_TOO_LARGE
+      - AUTH_REQUIRED
+      responses:
+        '202':
+          description: 冻结草稿并建立幂等发送提交
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Submission'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: draftId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      - name: Idempotency-Key
+        in: header
+        required: true
+        schema:
+          type: string
+          minLength: 16
+          maxLength: 128
+        description: 同一冻结版本重试HTTP请求必须复用
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendRequest'
+  /submissions/{submissionId}:
+    get:
+      operationId: getSubmission
+      tags:
+      - Compose
+      summary: 查询SMTP接受/明确失败/结果未知，不冒充收件端送达
+      x-requirements:
+      - FR-D04
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 查询SMTP接受/明确失败/结果未知，不冒充收件端送达
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Submission'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: submissionId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /submissions/{submissionId}/resolve:
+    post:
+      operationId: resolveSubmission
+      tags:
+      - Compose
+      summary: 仅本人处置unknown；允许新提交必须确认可能重复，原unknown事实保留
+      x-requirements:
+      - FR-D04
+      x-priority: Must
+      x-error-codes:
+      - SUBMISSION_NOT_UNKNOWN
+      - DUPLICATE_RISK_NOT_CONFIRMED
+      responses:
+        '200':
+          description: 仅本人处置unknown；允许新提交必须确认可能重复，原unknown事实保留
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Submission'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: submissionId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionResolution'
+  /downloads:
+    post:
+      operationId: createDownloadBatch
+      tags:
+      - Mail
+      summary: 创建单个或批量附件下载；25MB单项、200MB累计
+      x-requirements:
+      - FR-C04
+      x-priority: Should
+      x-error-codes:
+      - DOWNLOAD_LIMIT
+      - ATTACHMENT_TOO_LARGE
+      responses:
+        '202':
+          description: 创建单个或批量附件下载；25MB单项、200MB累计
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/DownloadBatch'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DownloadRequest'
+  /downloads/{batchId}:
+    get:
+      operationId: getDownloadBatch
+      tags:
+      - Mail
+      summary: 查询下载及中断原因
+      x-requirements:
+      - FR-C04
+      x-priority: Should
+      x-error-codes: []
+      responses:
+        '200':
+          description: 查询下载及中断原因
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/DownloadBatch'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: batchId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /attachments/{attachmentId}/content:
+    get:
+      operationId: getAttachmentContent
+      tags:
+      - Mail
+      summary: 下载已就绪附件，浏览器选择保存目录
+      x-requirements:
+      - FR-C04
+      x-priority: Should
+      x-error-codes:
+      - ATTACHMENT_NOT_READY
+      responses:
+        '200':
+          description: 下载已就绪附件，浏览器选择保存目录
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+              description: attachment；UTF8文件名安全编码，禁止inline
+            Cache-Control:
+              schema:
+                type: string
+              description: no-store
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: attachmentId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /sync:
+    post:
+      operationId: requestSync
+      tags:
+      - Sync
+      summary: 单账号/全部手动同步，5秒内返回任务
+      x-requirements:
+      - FR-B01
+      - FR-B02
+      - FR-B03
+      - FR-B04
+      - FR-B05
+      - FR-B06
+      x-priority: Must
+      x-error-codes:
+      - AUTH_REQUIRED
+      - AUTH_COOLDOWN
+      - ACCOUNT_DISABLED
+      responses:
+        '202':
+          description: 单账号/全部手动同步，5秒内返回任务
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/SyncAccepted'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SyncRequest'
+  /sync/jobs:
+    get:
+      operationId: listSyncJobs
+      tags:
+      - Sync
+      summary: 任务状态、进度及脱敏错误
+      x-requirements:
+      - FR-B03
+      - FR-B05
+      - FR-B07
+      - FR-B08
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 任务状态、进度及脱敏错误
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Job'
+                      nextCursor:
+                        type:
+                        - string
+                        - 'null'
+                      hasMore: *id002
+                    required:
+                    - items
+                    - nextCursor
+                    - hasMore
+                    additionalProperties: false
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema: *id001
+        description: 按账号
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 按状态
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+        description: 每页条数
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 不透明分页游标
+  /sync/jobs/{jobId}:
+    get:
+      operationId: getSyncJob
+      tags:
+      - Sync
+      summary: 任务状态与最后错误
+      x-requirements:
+      - FR-B05
+      - FR-B07
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 任务状态与最后错误
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Job'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /sync/jobs/{jobId}/retry:
+    post:
+      operationId: retrySyncJob
+      tags:
+      - Sync
+      summary: 手动重置网络退避；不绕过认证冷却
+      x-requirements:
+      - FR-B03
+      - FR-B05
+      x-priority: Must
+      x-error-codes:
+      - AUTH_COOLDOWN
+      - AUTH_REQUIRED
+      - JOB_NOT_RETRYABLE
+      responses:
+        '202':
+          description: 手动重置网络退避；不绕过认证冷却
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Job'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+  /search:
+    get:
+      operationId: searchMessages
+      tags:
+      - Search
+      summary: 当前用户跨账号本地搜索，返回正文覆盖状态
+      x-requirements:
+      - FR-E01
+      - FR-E02
+      x-priority: Must
+      x-error-codes:
+      - QUERY_INVALID
+      - QUERY_TOO_EXPENSIVE
+      - CURSOR_INVALID
+      responses:
+        '200':
+          description: 当前用户跨账号本地搜索，返回正文覆盖状态
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    type: object
+                    properties:
+                      items:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/MessageSummary'
+                      nextCursor:
+                        type:
+                        - string
+                        - 'null'
+                      hasMore: *id002
+                      coverage:
+                        $ref: '#/components/schemas/Coverage'
+                    required:
+                    - items
+                    - nextCursor
+                    - hasMore
+                    - coverage
+                    additionalProperties: false
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 256
+        description: NFC、trim后的字面搜索词，拒绝空串
+      - *id004
+      - *id005
+      - *id006
+      - *id007
+      - *id008
+      - *id009
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 50
+        description: 每页条数
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          type: string
+        description: 不透明分页游标
+  /settings:
+    get:
+      operationId: getSettings
+      tags:
+      - Settings
+      summary: 用户设置及缓存/索引/附件容量
+      x-requirements:
+      - FR-B04
+      - FR-F02
+      - FR-F03
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 用户设置及缓存/索引/附件容量
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Settings'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+    patch:
+      operationId: updateSettings
+      tags:
+      - Settings
+      summary: 更新同步间隔或在同事务淘汰后降低配额
+      x-requirements:
+      - FR-B04
+      - FR-F02
+      x-priority: Must
+      x-error-codes:
+      - CACHE_QUOTA
+      - STORAGE_FULL
+      responses:
+        '200':
+          description: 更新同步间隔或在同事务淘汰后降低配额
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Settings'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SettingsUpdate'
+  /settings/body-cache:
+    delete:
+      operationId: clearBodyCache
+      tags:
+      - Settings
+      summary: 只清阅读正文，保留头/索引/草稿
+      x-requirements:
+      - FR-F02
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 只清阅读正文，保留头/索引/草稿
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Ack'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+  /settings/mail-data/clear:
+    post:
+      operationId: clearMailData
+      tags:
+      - Settings
+      summary: 清本地邮件和索引，保留账号/凭据/草稿并暂停自动补拉
+      x-requirements:
+      - FR-F03
+      x-priority: Should
+      x-error-codes: []
+      responses:
+        '202':
+          description: 清本地邮件和索引，保留账号/凭据/草稿并暂停自动补拉
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Operation'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                confirm:
+                  const: true
+              required:
+              - confirm
+              additionalProperties: false
+  /operations/{operationId}:
+    get:
+      operationId: getOperation
+      tags:
+      - Settings
+      summary: 查询当前用户异步清理状态
+      x-requirements:
+      - FR-A08
+      - FR-F01
+      - FR-F03
+      x-priority: Must
+      x-error-codes: []
+      responses:
+        '200':
+          description: 查询当前用户异步清理状态
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    const: true
+                  data:
+                    $ref: '#/components/schemas/Operation'
+                  error:
+                    type: 'null'
+                  requestId: *id001
+                required:
+                - ok
+                - data
+                - error
+                - requestId
+                additionalProperties: false
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+        '403':
+          $ref: '#/components/responses/Error'
+        '404':
+          $ref: '#/components/responses/Error'
+        '409':
+          $ref: '#/components/responses/Error'
+        '413':
+          $ref: '#/components/responses/Error'
+        '422':
+          $ref: '#/components/responses/Error'
+        '429':
+          $ref: '#/components/responses/Error'
+        '503':
+          $ref: '#/components/responses/Error'
+      parameters:
+      - name: operationId
+        in: path
+        required: true
+        schema: *id001
+        description: 仅当前用户归属资源
+components:
+  securitySchemes:
+    BridgeToken:
+      type: http
+      scheme: bearer
+      description: 进程级随机访问令牌，仅内存
+    UserSession:
+      type: apiKey
+      in: header
+      name: X-MailHub-Session
+      description: 用户密码认证后签发，服务端绑定身份，切换后失效
+  schemas:
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 256
+        address:
+          type: string
+          format: email
+          maxLength: 320
+      required:
+      - address
+      additionalProperties: false
+    User:
+      type: object
+      properties:
+        userId: *id001
+        displayName:
+          type: string
+        state:
+          type: string
+          enum:
+          - provisioning
+          - active
+          - deleting
+      required:
+      - userId
+      - displayName
+      - state
+      additionalProperties: false
+    Session:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        sessionToken:
+          type: string
+          writeOnly: false
+          description: 一次返回，仅浏览器内存；不写日志
+        expiresAt: *id003
+        authVersion: &id010
+          type: integer
+          minimum: 1
+      required:
+      - user
+      - sessionToken
+      - expiresAt
+      - authVersion
+      additionalProperties: false
+    RegisterRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+          minLength: 1
+          maxLength: 40
+        password:
+          type: string
+          minLength: 10
+          maxLength: 128
+          writeOnly: true
+      required:
+      - displayName
+      - password
+      additionalProperties: false
+    LoginRequest:
+      type: object
+      properties:
+        userId: *id001
+        password:
+          type: string
+          minLength: 1
+          maxLength: 128
+          writeOnly: true
+      required:
+      - userId
+      - password
+      additionalProperties: false
+    PasswordChange:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+          writeOnly: true
+          minLength: 1
+        newPassword:
+          type: string
+          writeOnly: true
+          minLength: 10
+          maxLength: 128
+      required:
+      - currentPassword
+      - newPassword
+      additionalProperties: false
+    BridgeBootstrap:
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 32
+          writeOnly: true
+      required:
+      - code
+      additionalProperties: false
+    BridgeAccess:
+      type: object
+      properties:
+        bridgeToken:
+          type: string
+        expiresAt: *id003
+      required:
+      - bridgeToken
+      - expiresAt
+      additionalProperties: false
+    ServerConfig:
+      type: object
+      properties:
+        host:
+          type: string
+          minLength: 1
+          maxLength: 253
+        port:
+          type: integer
+          minimum: 1
+          maximum: 65535
+        security:
+          type: string
+          enum:
+          - tls
+          - starttls
+      required:
+      - host
+      - port
+      - security
+      additionalProperties: false
+    CredentialInput:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - oauth2
+          - authorization-code
+          - app-password
+          - password
+        secret:
+          type: string
+          writeOnly: true
+          maxLength: 4096
+        oauthFlowId: *id001
+      required:
+      - type
+      additionalProperties: false
+      description: oauth2必须oauthFlowId，其他方式必须secret；互斥；服务端校验，永不回显。
+      oneOf:
+      - properties:
+          type:
+            const: oauth2
+        required:
+        - oauthFlowId
+        not:
+          required:
+          - secret
+      - properties:
+          type:
+            enum:
+            - authorization-code
+            - app-password
+            - password
+        required:
+        - secret
+        not:
+          required:
+          - oauthFlowId
+    AccountValidationRequest:
+      type: object
+      properties:
+        providerKey:
+          type: string
+          enum:
+          - qq
+          - '163'
+          - gmail
+          - generic
+        address:
+          type: string
+          format: email
+        imap:
+          $ref: '#/components/schemas/ServerConfig'
+        smtp:
+          $ref: '#/components/schemas/ServerConfig'
+        credential:
+          $ref: '#/components/schemas/CredentialInput'
+      required:
+      - providerKey
+      - address
+      - imap
+      - smtp
+      - credential
+      additionalProperties: false
+    AccountValidation:
+      type: object
+      properties:
+        validationId: *id001
+        expiresAt: *id003
+        capabilities:
+          type: array
+          items:
+            type: string
+      required:
+      - validationId
+      - expiresAt
+      - capabilities
+      additionalProperties: false
+    AccountCreate:
+      type: object
+      properties:
+        validationId: *id001
+      required:
+      - validationId
+      additionalProperties: false
+    Account:
+      type: object
+      properties:
+        accountId: *id001
+        address:
+          type: string
+          format: email
+        providerKey:
+          type: string
+        authType:
+          type: string
+        imap:
+          $ref: '#/components/schemas/ServerConfig'
+        smtp:
+          $ref: '#/components/schemas/ServerConfig'
+        enabled: *id002
+        status:
+          type: string
+          enum:
+          - authorized
+          - syncing
+          - retry
+          - auth-required
+          - disabled
+          - removing
+        lastErrorCode:
+          type:
+          - string
+          - 'null'
+        cooldownUntil:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - accountId
+      - address
+      - providerKey
+      - authType
+      - enabled
+      - status
+      additionalProperties: false
+    Provider:
+      type: object
+      properties:
+        providerKey:
+          type: string
+        label:
+          type: string
+        imap:
+          $ref: '#/components/schemas/ServerConfig'
+        smtp:
+          $ref: '#/components/schemas/ServerConfig'
+        authTypes:
+          type: array
+          items:
+            type: string
+        guideSteps:
+          type: array
+          items:
+            type: string
+      required:
+      - providerKey
+      - label
+      - imap
+      - smtp
+      - authTypes
+      - guideSteps
+      additionalProperties: false
+    OAuthStart:
+      type: object
+      properties:
+        providerKey:
+          type: string
+          enum:
+          - gmail
+        address:
+          type: string
+          format: email
+        accountId: *id001
+      required:
+      - providerKey
+      - address
+      additionalProperties: false
+    OAuthFlow:
+      type: object
+      properties:
+        flowId: *id001
+        status:
+          type: string
+          enum:
+          - pending
+          - authorized
+          - failed
+          - expired
+        authorizationUrl:
+          type: string
+          format: uri
+        expiresAt: *id003
+        errorCode:
+          type:
+          - string
+          - 'null'
+      required:
+      - flowId
+      - status
+      - expiresAt
+      additionalProperties: false
+    OAuthClientImport:
+      type: object
+      properties:
+        installed:
+          type: object
+          properties:
+            client_id:
+              type: string
+            client_secret:
+              type: string
+              writeOnly: true
+            project_id:
+              type: string
+            auth_uri:
+              type: string
+            token_uri:
+              type: string
+            auth_provider_x509_cert_url:
+              type: string
+            redirect_uris:
+              type: array
+              items:
+                type: string
+          required:
+          - client_id
+          - client_secret
+          additionalProperties: false
+      required:
+      - installed
+      additionalProperties: false
+      description: 本用户Google桌面客户端JSON；拒绝Web客户端及自定义认证/令牌端点；密文保存，不回显配置。
+    Folder:
+      type: object
+      properties:
+        folderId: *id001
+        accountId: *id001
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - inbox
+          - sent
+          - trash
+          - drafts
+          - other
+        state:
+          type: string
+          enum:
+          - active
+          - rebuilding
+          - missing
+          - removing
+        unreadCount: &id015
+          type: integer
+          minimum: 0
+      required:
+      - folderId
+      - accountId
+      - name
+      - role
+      - state
+      - unreadCount
+      additionalProperties: false
+    MessageSummary:
+      type: object
+      properties:
+        messageId: *id001
+        accountId: *id001
+        folderId: *id001
+        subject: &id011
+          type: string
+        from: &id012
+          type: array
+          items:
+            $ref: '#/components/schemas/Address'
+          maxItems: 100
+        receivedAt: *id003
+        sentAt: &id013
+          type:
+          - string
+          - 'null'
+          format: date-time
+        isRead: *id002
+        hasAttachments: *id002
+        bodyCached: *id002
+        bodyIndexState: &id014
+          type: string
+          enum:
+          - pending
+          - indexed
+          - unavailable
+        version: *id010
+      required:
+      - messageId
+      - accountId
+      - folderId
+      - subject
+      - from
+      - receivedAt
+      - isRead
+      - hasAttachments
+      - bodyCached
+      - bodyIndexState
+      - version
+      additionalProperties: false
+    Attachment:
+      type: object
+      properties:
+        attachmentId: *id001
+        fileName:
+          type: string
+        mimeType:
+          type: string
+        declaredBytes:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        downloaded: *id002
+      required:
+      - attachmentId
+      - fileName
+      - mimeType
+      - downloaded
+      additionalProperties: false
+    MessageDetail:
+      type: object
+      properties:
+        messageId: *id001
+        accountId: *id001
+        folderId: *id001
+        subject: *id011
+        from: *id012
+        receivedAt: *id003
+        sentAt: *id013
+        isRead: *id002
+        hasAttachments: *id002
+        bodyCached: *id002
+        bodyIndexState: *id014
+        version: *id010
+        to: *id012
+        cc: *id012
+        replyTo: *id012
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Attachment'
+        rfcMessageId:
+          type:
+          - string
+          - 'null'
+        inReplyTo:
+          type:
+          - string
+          - 'null'
+        references:
+          type: array
+          items:
+            type: string
+      required:
+      - messageId
+      - accountId
+      - folderId
+      - subject
+      - from
+      - receivedAt
+      - isRead
+      - hasAttachments
+      - bodyCached
+      - bodyIndexState
+      - version
+      - to
+      - cc
+      - replyTo
+      - attachments
+      - references
+      additionalProperties: false
+    Body:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - ready
+          - pending
+          - offline-unavailable
+        text:
+          type: string
+        html:
+          type: string
+          description: 未经信任的HTML；仅交安全阅读组件，不能放主DOM
+        cached: *id002
+        jobId: *id001
+      required:
+      - state
+      - cached
+      additionalProperties: false
+    Draft:
+      type: object
+      properties:
+        draftId: *id001
+        accountId: *id001
+        mode:
+          type: string
+          enum:
+          - new
+          - reply
+          - forward
+        sourceMessageId: *id001
+        to: *id012
+        cc: *id012
+        bcc: *id012
+        subject:
+          type: string
+          maxLength: 998
+        bodyText:
+          type: string
+        bodyHtml:
+          type:
+          - string
+          - 'null'
+        state:
+          type: string
+          enum:
+          - editing
+          - queued
+          - sending
+          - failed
+          - unknown
+          - sent
+        version: *id010
+        updatedAt: *id003
+        lastErrorCode:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/DraftFile'
+      required:
+      - draftId
+      - accountId
+      - mode
+      - to
+      - cc
+      - bcc
+      - subject
+      - bodyText
+      - state
+      - version
+      - updatedAt
+      - attachments
+      additionalProperties: false
+    DraftFile:
+      type: object
+      properties:
+        fileId: *id001
+        fileName:
+          type: string
+        mimeType:
+          type: string
+        byteSize:
+          type: integer
+          minimum: 0
+          maximum: 25000000
+      required:
+      - fileId
+      - fileName
+      - mimeType
+      - byteSize
+      additionalProperties: false
+    DraftCreate:
+      type: object
+      properties:
+        accountId: *id001
+        to: *id012
+        cc: *id012
+        bcc: *id012
+        subject:
+          type: string
+          maxLength: 998
+        bodyText:
+          type: string
+      required:
+      - accountId
+      additionalProperties: false
+    DraftUpdate:
+      type: object
+      properties:
+        to: *id012
+        cc: *id012
+        bcc: *id012
+        subject:
+          type: string
+          maxLength: 998
+        bodyText:
+          type: string
+        bodyHtml:
+          type:
+          - string
+          - 'null'
+      required:
+      - to
+      - cc
+      - bcc
+      - subject
+      - bodyText
+      additionalProperties: false
+    DeriveDraft:
+      type: object
+      properties:
+        accountId: *id001
+        comment:
+          type: string
+      required:
+      - accountId
+      additionalProperties: false
+    SendRequest:
+      type: object
+      properties:
+        draftVersion: *id010
+      required:
+      - draftVersion
+      additionalProperties: false
+    Submission:
+      type: object
+      properties:
+        submissionId: *id001
+        draftId: *id001
+        state:
+          type: string
+          enum:
+          - queued
+          - preparing
+          - submitting
+          - accepted
+          - failed
+          - unknown
+        lastErrorCode:
+          type:
+          - string
+          - 'null'
+        serverAccepted: *id002
+        recipientDelivery:
+          type: string
+          enum:
+          - not-observed
+        updatedAt: *id003
+        resolution:
+          type:
+          - string
+          - 'null'
+          enum:
+          - confirm-accepted
+          - allow-new-submission
+          - null
+      required:
+      - submissionId
+      - draftId
+      - state
+      - serverAccepted
+      - recipientDelivery
+      - updatedAt
+      additionalProperties: false
+    SubmissionResolution:
+      type: object
+      properties:
+        decision:
+          type: string
+          enum:
+          - confirm-accepted
+          - allow-new-submission
+        confirmPossibleDuplicate: *id002
+      required:
+      - decision
+      additionalProperties: false
+      allOf:
+      - if:
+          properties:
+            decision:
+              const: allow-new-submission
+        then:
+          properties:
+            confirmPossibleDuplicate:
+              const: true
+          required:
+          - confirmPossibleDuplicate
+    Job:
+      type: object
+      properties:
+        jobId: *id001
+        accountId: *id001
+        folderId: *id001
+        kind:
+          type: string
+        state:
+          type: string
+          enum:
+          - pending
+          - running
+          - retry
+          - paused
+          - auth-required
+          - completed
+          - failed
+          - canceled
+        attempt: *id015
+        nextRunAt: *id003
+        progressDone: *id015
+        progressTotal:
+          type:
+          - integer
+          - 'null'
+          minimum: 0
+        lastErrorCode:
+          type:
+          - string
+          - 'null'
+      required:
+      - jobId
+      - kind
+      - state
+      - attempt
+      - nextRunAt
+      - progressDone
+      - progressTotal
+      - lastErrorCode
+      additionalProperties: false
+    Operation:
+      type: object
+      properties:
+        operationId: *id001
+        state:
+          type: string
+          enum:
+          - pending
+          - running
+          - done
+          - failed
+        lastErrorCode:
+          type:
+          - string
+          - 'null'
+      required:
+      - operationId
+      - state
+      additionalProperties: false
+    SyncRequest:
+      type: object
+      properties:
+        accountId: *id001
+        folderId: *id001
+      required: []
+      additionalProperties: false
+      description: 无accountId为当前用户全部启用账号；folderId必须属于accountId；清数据暂停后手动调用恢复自动补拉。
+    SyncAccepted:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        coalesced: *id002
+      required:
+      - jobs
+      - coalesced
+      additionalProperties: false
+    ReadMutation:
+      type: object
+      properties:
+        isRead: *id002
+      required:
+      - isRead
+      additionalProperties: false
+    DownloadRequest:
+      type: object
+      properties:
+        attachmentIds:
+          type: array
+          items: *id001
+          minItems: 1
+          maxItems: 100
+      required:
+      - attachmentIds
+      additionalProperties: false
+    DownloadBatch:
+      type: object
+      properties:
+        batchId: *id001
+        state:
+          type: string
+          enum:
+          - pending
+          - running
+          - completed
+          - failed
+          - canceled
+        receivedBytes:
+          type: integer
+          minimum: 0
+          maximum: 200000000
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              attachmentId: *id001
+              state:
+                type: string
+              errorCode:
+                type:
+                - string
+                - 'null'
+            required:
+            - attachmentId
+            - state
+            additionalProperties: false
+      required:
+      - batchId
+      - state
+      - receivedBytes
+      - items
+      additionalProperties: false
+    Settings:
+      type: object
+      properties:
+        syncIntervalMinutes:
+          type: integer
+          minimum: 5
+          maximum: 60
+        autoSyncPaused: *id002
+        cacheLimitBytes:
+          type: integer
+          minimum: 1
+        cacheUsedBytes: *id015
+        indexBytes:
+          type: integer
+          minimum: 0
+          description: SearchDocument UTF8逻辑载荷字节数，不冒充FTS物理大小或总盘占用
+        attachmentBytes: *id015
+        hasGoogleOAuthClient: *id002
+        databaseBytes: *id015
+        walBytes: *id015
+      required:
+      - syncIntervalMinutes
+      - autoSyncPaused
+      - cacheLimitBytes
+      - cacheUsedBytes
+      - indexBytes
+      - attachmentBytes
+      - hasGoogleOAuthClient
+      - databaseBytes
+      - walBytes
+      additionalProperties: false
+    SettingsUpdate:
+      type: object
+      properties:
+        syncIntervalMinutes:
+          type: integer
+          minimum: 5
+          maximum: 60
+        cacheLimitBytes:
+          type: integer
+          minimum: 1
+      required: []
+      additionalProperties: false
+      minProperties: 1
+    Coverage:
+      type: object
+      properties:
+        totalMessages: *id015
+        bodyIndexed: *id015
+        bodyPending: *id015
+        bodyUnavailable: *id015
+        complete: *id002
+      required:
+      - totalMessages
+      - bodyIndexed
+      - bodyPending
+      - bodyUnavailable
+      - complete
+      additionalProperties: false
+    Ack:
+      type: object
+      properties:
+        done: *id002
+      required:
+      - done
+      additionalProperties: false
+    ErrorInfo:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+          description: 中文明确原因
+        action:
+          type: string
+          description: 中文下一步操作
+        retryAfterSeconds: *id015
+        fieldErrors:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              code:
+                type: string
+            required:
+            - field
+            - code
+            additionalProperties: false
+      required:
+      - code
+      - message
+      - action
+      additionalProperties: false
+    ErrorEnvelope:
+      type: object
+      properties:
+        ok:
+          const: false
+        data:
+          type: 'null'
+        error:
+          $ref: '#/components/schemas/ErrorInfo'
+        requestId: *id001
+      required:
+      - ok
+      - data
+      - error
+      - requestId
+      additionalProperties: false
+  responses:
+    Error:
+      description: 统一错误；无资源归属统一404；校验失败422；会话失效401；Origin/Host拒绝403。
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorEnvelope'

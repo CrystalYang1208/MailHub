@@ -1,0 +1,10 @@
+flowchart TB
+  UI[展示层 Vue组件与状态] --> Web[桥接层 Endpoint DTO 验证 错误映射]
+  Web --> UseCase[应用层 用例与事务编排]
+  UseCase --> Domain[领域层 邮件身份 状态机 业务规则]
+  UseCase --> Port[端口 接口与不可变UserContext]
+  Infra[协议接入与数据访问实现] --> Port
+  Infra --> Persist[持久化 SQLite 文件 DPAPI]
+  Root[Host组合根与后台任务] --> Web
+  Root --> UseCase
+  Root --> Infra

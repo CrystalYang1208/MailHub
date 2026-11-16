@@ -1,0 +1,13 @@
+flowchart LR
+  Browser[Chrome / Edge 中文Vue界面] -->|同源HTTP JSON / fetch事件流| Host[本地桥接 127.0.0.1]
+  Host --> Security[会话授权与用户密钥租约]
+  Host --> App[Account / Sync / Mail / Compose / Search / Settings]
+  App --> Ports[协议 仓储 凭据 时钟 文件接口]
+  Ports --> MailKit[MailKit / MimeKit适配器]
+  MailKit -->|严格TLS IMAP / SMTP| Provider[QQ / 163 / Gmail / 标准邮箱]
+  Ports --> OAuth[Google桌面OAuth / 刷新]
+  OAuth --> Google[Google必要认证端点]
+  Ports --> Sqlite[每应用用户SQLite / FTS5]
+  Ports --> Files[每应用用户文件对象与临时目录]
+  Security --> Catalog[目录库 用户 密钥封套 唯一地址预留]
+  Security --> DPAPI[Windows DPAPI CurrentUser]
