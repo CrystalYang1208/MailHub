@@ -1,0 +1,8 @@
+# Keep Windows checkouts consistent with .editorconfig and formatting checks.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.zip binary
+*.docx binary
+*.png binary
+*.jpg binary
+*.jpeg binary
